@@ -327,6 +327,98 @@ function fixDotLabels() {
     if (hero) hero.setAttribute('data-label', 'Nahoru');
 }
 
+
+// ── Disposition Filter ────────────────────────────────────────────
+let activeFilter = 'all';
+
+function filterProps(dispozice) {
+    activeFilter = dispozice;
+    // Update button styles
+    document.querySelectorAll('.filter-btn').forEach(btn => {
+        const isActive = btn.dataset.filter === dispozice;
+        btn.classList.toggle('bg-primary', isActive);
+        btn.classList.toggle('text-white', isActive);
+        btn.classList.toggle('border-primary', isActive);
+        btn.classList.toggle('bg-white', !isActive);
+        btn.classList.toggle('text-gray-600', !isActive);
+        btn.classList.toggle('border-gray-200', !isActive);
+    });
+    // Re-render filtered table
+    const tbody = document.getElementById('property-tbody');
+    if (!tbody) return;
+    const sorted = [...properties].sort((a, b) =>
+        (DISPOZICE_ORDER[a.dispozice] || 99) - (DISPOZICE_ORDER[b.dispozice] || 99)
+    );
+    const filtered = dispozice === 'all' ? sorted : sorted.filter(p => p.dispozice === dispozice);
+    tbody.innerHTML = filtered.length === 0
+        ? `<tr><td colspan="9" class="text-center py-12 text-textMuted">Žádné byty tohoto typu nejsou k dispozici.</td></tr>`
+        : filtered.map((prop, index) => `
+        <tr class="reveal active property-row group cursor-pointer" style="transition-delay: ${index * 30}ms" onclick="openModal(${prop.id})">
+            <td class="text-primary font-bold tabular-nums pl-6">${prop.id}</td>
+            <td class="text-gray-500">${prop.podlazi}. patro</td>
+            <td class="font-bold text-textDefault">${prop.dispozice}</td>
+            <td class="text-gray-500 hidden md:table-cell">${prop.orientace}</td>
+            <td class="text-gray-500">${prop.plocha}</td>
+            <td class="text-gray-500 hidden sm:table-cell">${prop.balkon}</td>
+            <td class="text-primary font-bold whitespace-nowrap">${prop.cena}</td>
+            <td>
+                <span class="inline-flex items-center gap-1.5 text-success font-medium text-sm">
+                    <span class="w-2 h-2 rounded-full bg-success inline-block flex-shrink-0"></span>
+                    Volný
+                </span>
+            </td>
+            <td class="text-right">
+                <button class="w-10 h-10 rounded-md border border-gray-200 hover:border-primary hover:bg-primary hover:text-white text-gray-400 inline-flex items-center justify-center transition-all duration-200">
+                    <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"></path></svg>
+                </button>
+            </td>
+        </tr>
+    `).join('');
+}
+
+// ── FAQ Accordion ─────────────────────────────────────────────────
+function initFAQ() {
+    document.querySelectorAll('.faq-toggle').forEach(btn => {
+        btn.addEventListener('click', () => {
+            const answer = btn.nextElementSibling;
+            const icon = btn.querySelector('.faq-icon');
+            const isOpen = !answer.classList.contains('hidden');
+            // Close all
+            document.querySelectorAll('.faq-answer').forEach(a => a.classList.add('hidden'));
+            document.querySelectorAll('.faq-icon').forEach(i => i.style.transform = '');
+            // Open clicked if it was closed
+            if (!isOpen) {
+                answer.classList.remove('hidden');
+                icon.style.transform = 'rotate(180deg)';
+            }
+        });
+    });
+}
+
+// ── Floating CTA ──────────────────────────────────────────────────
+function initFloatingCTA() {
+    const cta = document.getElementById('floating-cta');
+    const contact = document.getElementById('contact');
+    if (!cta || !contact) return;
+    window.addEventListener('scroll', () => {
+        const heroBottom = document.querySelector('header').offsetTop + document.querySelector('header').offsetHeight;
+        const contactTop = contact.offsetTop;
+        const scrolled = window.scrollY > heroBottom;
+        const pastContact = window.scrollY + window.innerHeight > contactTop + 100;
+        if (scrolled && !pastContact) {
+            cta.style.opacity = '1';
+            cta.style.pointerEvents = 'auto';
+            cta.style.transform = 'translateX(-50%) translateY(0)';
+        } else {
+            cta.style.opacity = '0';
+            cta.style.pointerEvents = 'none';
+            cta.style.transform = 'translateX(-50%) translateY(12px)';
+        }
+    }, { passive: true });
+    // initial state
+    cta.style.transform = 'translateX(-50%) translateY(12px)';
+}
+
 document.addEventListener('DOMContentLoaded', () => {
     renderProperties();
     setTimeout(initScrollAnimations, 100);
@@ -334,6 +426,8 @@ document.addEventListener('DOMContentLoaded', () => {
     initSectionDots();
     initNavbar();
     initParallax();
+    initFAQ();
+    initFloatingCTA();
     fixDotLabels();
     document.addEventListener('keydown', e => { if (e.key === 'Escape') closeModal(); });
 });

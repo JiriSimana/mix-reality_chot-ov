@@ -1,0 +1,70 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+html { scroll-behavior: smooth; }
+body { background: #fff; color: #2c2c2c; -webkit-font-smoothing: antialiased; }
+
+/* ----------------------------------------
+   Reveal Animations
+---------------------------------------- */
+.reveal {
+    opacity: 0;
+    transform: translateY(20px);
+    transition: opacity 0.7s ease-out, transform 0.7s ease-out;
+}
+.reveal.active {
+    opacity: 1;
+    transform: translateY(0);
+}
+
+/* ----------------------------------------
+   Table Styling
+---------------------------------------- */
+.property-table th {
+    padding-bottom: 1.25rem;
+    font-weight: 500;
+    color: #9ca3af;
+    text-align: left;
+    font-size: 0.8rem;
+    letter-spacing: 0.05em;
+    text-transform: uppercase;
+}
+.property-table td {
+    padding: 1.25rem 0.5rem 1.25rem 0;
+    border-bottom: 1px solid #f0f0f0;
+    vertical-align: middle;
+}
+.property-row {
+    transition: background-color 0.15s;
+}
+.property-row:hover {
+    background-color: #f8faff;
+}
+
+/* ----------------------------------------
+   Modal Transitions
+---------------------------------------- */
+#property-modal {
+    opacity: 0;
+    transition: opacity 0.3s ease;
+}
+#property-modal.modal-visible {
+    opacity: 1;
+}
+#property-modal > div {
+    transform: translateY(20px) scale(0.97);
+    transition: transform 0.3s ease;
+}
+#property-modal.modal-visible > div {
+    transform: translateY(0) scale(1);
+}
+
+/* ----------------------------------------
+   Hero Badge pulse
+---------------------------------------- */
+@keyframes pulse-dot {
+    0%, 100% { opacity: 1; }
+    50% { opacity: 0.4; }
+}
+.status-dot { animation: pulse-dot 2s infinite; }

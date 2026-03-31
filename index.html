@@ -1,0 +1,553 @@
+<!DOCTYPE html>
+<html lang="cs" class="scroll-smooth">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Novostavba Chotěšov — Bytový dům na ulici Plzeňská</title>
+    <meta name="description" content="Exkluzivní nabídka bytů v novostavbě bytového domu v centru Chotěšova, ul. Plzeňská. 10 bytových jednotek 1+kk až 3+1. Projekt ve výstavbě, předání 2026.">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link href="./dist/output.css" rel="stylesheet">
+    <link href="./src/style.css" rel="stylesheet">
+</head>
+<body class="bg-white text-textDefault font-sans">
+
+<!-- ========== NAVBAR ========== -->
+<nav id="navbar" class="fixed w-full z-40 transition-all duration-300 py-3">
+    <div class="max-w-screen-xl mx-auto px-6 lg:px-12 flex justify-between items-center">
+        <a href="#" class="text-white font-bold text-xl tracking-tight flex items-center gap-2" id="nav-logo">
+            <span class="bg-white/20 backdrop-blur-sm rounded px-2 py-1 text-white">MIX</span>
+            <span class="text-white/90 font-light tracking-widest text-sm uppercase">Reality</span>
+        </a>
+        <div class="hidden md:flex items-center gap-8 text-white/90 text-sm font-medium">
+            <a href="#projekt" class="hover:text-white transition-colors">O projektu</a>
+            <a href="#byty" class="hover:text-white transition-colors">Byty</a>
+            <a href="#harmonogram" class="hover:text-white transition-colors">Harmonogram</a>
+            <a href="#contact" class="hover:text-white transition-colors">Kontakt</a>
+        </div>
+        <a href="#contact" class="bg-white text-primary text-sm font-semibold px-5 py-2.5 rounded-full hover:bg-primary hover:text-white transition-all duration-200 shadow-lg shadow-black/10">
+            Mám zájem
+        </a>
+    </div>
+</nav>
+
+<!-- ========== HERO ========== -->
+<header class="relative min-h-screen flex flex-col justify-end overflow-hidden">
+    <!-- Hero Image — real Mixreality visualization -->
+    <div class="absolute inset-0 z-0">
+        <img src="https://www.mixreality.eu/data/filecache/64/tn_zoom_filename_77533.jpg"
+             alt="Vizualizace bytového domu Chotěšov"
+             class="w-full h-full object-cover object-center"
+             onerror="this.src='https://images.unsplash.com/photo-1628624747186-a941c476b7ef?w=1800&q=80'">
+        <div class="absolute inset-0 bg-gradient-to-t from-black/80 via-black/40 to-black/20"></div>
+    </div>
+
+    <div class="relative z-10 max-w-screen-xl mx-auto px-6 lg:px-12 pb-16 md:pb-24 w-full">
+        <!-- Status badge -->
+        <div class="flex items-center gap-2 mb-6">
+            <span class="status-dot inline-block w-2.5 h-2.5 rounded-full bg-green-400"></span>
+            <span class="text-green-300 text-sm font-semibold uppercase tracking-widest">Projekt ve výstavbě</span>
+        </div>
+
+        <h1 class="text-4xl md:text-6xl lg:text-7xl font-bold text-white mb-6 leading-tight max-w-3xl">
+            Moderní bydlení<br>
+            <span class="text-blue-300">v centru Chotěšova</span>
+        </h1>
+
+        <p class="text-lg md:text-xl text-white/80 mb-8 max-w-2xl font-light leading-relaxed">
+            Cihlový bytový dům na ulici Plzeňská. 10 bytových jednotek dispozic 1+kk až 3+1. 
+            Možnost klientských změn, parkovací stání v ceně. Předání plánováno 2026.
+        </p>
+
+        <!-- Key stats -->
+        <div class="grid grid-cols-2 md:grid-cols-4 gap-4 mb-10">
+            <div class="bg-white/10 backdrop-blur-sm rounded-xl p-4 text-center">
+                <p class="text-2xl font-bold text-white">10</p>
+                <p class="text-white/70 text-sm">Bytových jednotek</p>
+            </div>
+            <div class="bg-white/10 backdrop-blur-sm rounded-xl p-4 text-center">
+                <p class="text-2xl font-bold text-white">2</p>
+                <p class="text-white/70 text-sm">Nadzemní podlaží</p>
+            </div>
+            <div class="bg-white/10 backdrop-blur-sm rounded-xl p-4 text-center">
+                <p class="text-2xl font-bold text-white">2026</p>
+                <p class="text-white/70 text-sm">Předání bytu</p>
+            </div>
+            <div class="bg-white/10 backdrop-blur-sm rounded-xl p-4 text-center">
+                <p class="text-2xl font-bold text-white">20 min</p>
+                <p class="text-white/70 text-sm">Centrum Plzně</p>
+            </div>
+        </div>
+
+        <div class="flex flex-col sm:flex-row gap-4">
+            <a href="#byty" class="inline-flex items-center justify-center gap-2 bg-primary text-white font-semibold px-8 py-4 rounded-full hover:bg-primary-light transition-colors shadow-xl shadow-blue-900/30">
+                Prohlédnout byty
+                <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 14l-7 7m0 0l-7-7m7 7V3"></path></svg>
+            </a>
+            <a href="#contact" class="inline-flex items-center justify-center gap-2 bg-white/15 backdrop-blur-sm text-white font-semibold px-8 py-4 rounded-full hover:bg-white/25 transition-colors border border-white/30">
+                Kontaktovat makléře
+            </a>
+        </div>
+    </div>
+</header>
+
+<!-- ========== O PROJEKTU ========== -->
+<section id="projekt" class="py-20 bg-white">
+    <div class="max-w-screen-xl mx-auto px-6 lg:px-12">
+        <div class="grid grid-cols-1 lg:grid-cols-2 gap-16 items-center">
+            <div class="reveal">
+                <span class="text-primary text-sm font-semibold uppercase tracking-widest mb-3 block">O projektu</span>
+                <h2 class="text-3xl md:text-4xl font-bold text-textDefault mb-6 leading-tight">
+                    Exkluzivní novostavba<br>na ulici Plzeňská
+                </h2>
+                <p class="text-textMuted leading-relaxed mb-6">
+                    Naše realitní společnost Vám exkluzivně nabízí ke koupi bytové jednotky v novostavbě moderního cihlového bytového domu, situovaného v centru obce Chotěšov, na ulici Plzeňská. Projekt se nachází aktuálně ve fázi výstavby s plánovaným dokončením v roce 2026.
+                </p>
+                <p class="text-textMuted leading-relaxed mb-8">
+                    Bytový dům splňuje moderní standardy úspory energií. Každá bytová jednotka má vlastní parkovací stání. Projekt nabízí dispozice od 1+kk po 3+1 s výměrami 42 až 112 m².
+                </p>
+
+                <!-- Feature tags -->
+                <div class="flex flex-wrap gap-3">
+                    <span class="px-4 py-2 bg-blue-50 text-primary rounded-full text-sm font-medium">Cihlová konstrukce</span>
+                    <span class="px-4 py-2 bg-blue-50 text-primary rounded-full text-sm font-medium">Parkovací stání v ceně</span>
+                    <span class="px-4 py-2 bg-blue-50 text-primary rounded-full text-sm font-medium">Nízké provozní náklady</span>
+                    <span class="px-4 py-2 bg-blue-50 text-primary rounded-full text-sm font-medium">Klientské změny</span>
+                    <span class="px-4 py-2 bg-blue-50 text-primary rounded-full text-sm font-medium">Centrum Chotěšova</span>
+                    <span class="px-4 py-2 bg-blue-50 text-primary rounded-full text-sm font-medium">20 min od Plzně</span>
+                </div>
+            </div>
+
+            <!-- Second visualization image -->
+            <div class="reveal">
+                <div class="rounded-2xl overflow-hidden shadow-2xl shadow-gray-200 aspect-[4/3]">
+                    <img src="https://www.mixreality.eu/data/filecache/8d/tn_zoom_filename_77532.jpg"
+                         alt="Exteriér bytového domu"
+                         class="w-full h-full object-cover hover:scale-105 transition-transform duration-700"
+                         onerror="this.src='https://images.unsplash.com/photo-1600607686527-6fb886090705?w=800&q=80'">
+                </div>
+            </div>
+        </div>
+
+        <!-- Interior visualization below -->
+        <div class="mt-16 grid grid-cols-1 md:grid-cols-3 gap-6 reveal">
+            <div class="col-span-2 rounded-2xl overflow-hidden aspect-video shadow-lg shadow-gray-200">
+                <img src="https://www.mixreality.eu/data/filecache/a0/tn_zoom_filename_77671.jpg"
+                     alt="Interiér bytu"
+                     class="w-full h-full object-cover hover:scale-105 transition-transform duration-700"
+                     onerror="this.src='https://images.unsplash.com/photo-1600566753190-17f0baa2a6c3?w=800&q=80'">
+            </div>
+            <div class="flex flex-col gap-4">
+                <div class="bg-neutralBg rounded-2xl p-8 flex-1 flex flex-col justify-center">
+                    <p class="text-4xl font-bold text-primary mb-2">od 3,59 mil.</p>
+                    <p class="text-textMuted text-sm">Startovní cena bytu 1+kk</p>
+                </div>
+                <div class="bg-neutralBg rounded-2xl p-8 flex-1 flex flex-col justify-center">
+                    <p class="text-4xl font-bold text-textDefault mb-2">10</p>
+                    <p class="text-textMuted text-sm">Všechny byty aktuálně volné</p>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- ========== BYTY — TABLE ========== -->
+<section id="byty" class="py-20 bg-neutralBg">
+    <div class="max-w-screen-xl mx-auto px-6 lg:px-12">
+        <div class="reveal mb-12">
+            <span class="text-primary text-sm font-semibold uppercase tracking-widest mb-3 block">Výběr bytu</span>
+            <h2 class="text-3xl md:text-4xl font-bold text-textDefault mb-4">Dostupné bytové jednotky</h2>
+            <p class="text-textMuted max-w-2xl">Klikněte na libovolný řádek pro zobrazení detailu bytu s vizualizacemi a podrobnostmi. Všechny byty jsou aktuálně volné.</p>
+        </div>
+
+        <div class="bg-white rounded-2xl shadow-sm border border-gray-100 overflow-x-auto reveal">
+            <table class="w-full text-left border-collapse property-table min-w-[750px]">
+                <thead>
+                    <tr class="border-b border-gray-100">
+                        <th class="pl-6">Číslo</th>
+                        <th>Podlaží</th>
+                        <th>Dispozice</th>
+                        <th class="hidden md:table-cell">Orientace</th>
+                        <th>Plocha</th>
+                        <th class="hidden sm:table-cell">Balkon</th>
+                        <th>Cena s DPH</th>
+                        <th>Stav</th>
+                        <th class="pr-6 text-right w-16"></th>
+                    </tr>
+                </thead>
+                <tbody id="property-tbody">
+                    <!-- Rendered via JS -->
+                </tbody>
+            </table>
+        </div>
+
+        <p class="text-center text-textMuted text-sm mt-6 reveal">
+            Ceny jsou uvedeny včetně DPH. Součástí každé jednotky je parkovací stání. Možnost rezervace a klientských změn.
+        </p>
+    </div>
+</section>
+
+<!-- ========== HARMONOGRAM ========== -->
+<section id="harmonogram" class="py-20 bg-white">
+    <div class="max-w-screen-xl mx-auto px-6 lg:px-12">
+        <div class="reveal text-center mb-16">
+            <span class="text-primary text-sm font-semibold uppercase tracking-widest mb-3 block">Průběh projektu</span>
+            <h2 class="text-3xl md:text-4xl font-bold text-textDefault">Harmonogram výstavby</h2>
+        </div>
+
+        <div class="relative reveal">
+            <!-- Timeline connector -->
+            <div class="absolute top-8 left-0 right-0 h-px bg-gray-200 hidden md:block mx-16"></div>
+
+            <div class="grid grid-cols-2 md:grid-cols-5 gap-y-10 md:gap-4 relative">
+                <!-- Step 1 — DONE -->
+                <div class="flex flex-col items-center text-center gap-4">
+                    <div class="relative z-10 w-16 h-16 rounded-full bg-primary text-white flex items-center justify-center font-bold text-lg shadow-lg shadow-blue-200">01</div>
+                    <div>
+                        <p class="font-semibold text-textDefault">12/2025</p>
+                        <p class="text-sm text-textMuted mt-0.5">Zahájení stavby</p>
+                        <span class="mt-2 inline-block text-xs bg-green-100 text-green-700 font-medium px-2 py-0.5 rounded-full">✓ Hotovo</span>
+                    </div>
+                </div>
+                <!-- Step 2 — ACTIVE -->
+                <div class="flex flex-col items-center text-center gap-4">
+                    <div class="relative z-10 w-16 h-16 rounded-full bg-primary text-white flex items-center justify-center font-bold text-lg shadow-lg shadow-blue-200 ring-4 ring-blue-100">02</div>
+                    <div>
+                        <p class="font-semibold text-textDefault">03/2026</p>
+                        <p class="text-sm text-textMuted mt-0.5">Zahájení prodeje</p>
+                        <span class="mt-2 inline-block text-xs bg-blue-100 text-primary font-medium px-2 py-0.5 rounded-full">● Probíhá</span>
+                    </div>
+                </div>
+                <!-- Step 3 -->
+                <div class="flex flex-col items-center text-center gap-4">
+                    <div class="relative z-10 w-16 h-16 rounded-full bg-gray-100 text-gray-400 flex items-center justify-center font-bold text-lg">03</div>
+                    <div>
+                        <p class="font-semibold text-gray-400">08/2026</p>
+                        <p class="text-sm text-gray-300 mt-0.5">Hrubá stavba</p>
+                    </div>
+                </div>
+                <!-- Step 4 -->
+                <div class="flex flex-col items-center text-center gap-4">
+                    <div class="relative z-10 w-16 h-16 rounded-full bg-gray-100 text-gray-400 flex items-center justify-center font-bold text-lg">04</div>
+                    <div>
+                        <p class="font-semibold text-gray-400">01/2027</p>
+                        <p class="text-sm text-gray-300 mt-0.5">Dokončení stavby</p>
+                    </div>
+                </div>
+                <!-- Step 5 -->
+                <div class="flex flex-col items-center text-center gap-4">
+                    <div class="relative z-10 w-16 h-16 rounded-full bg-gray-100 text-gray-400 flex items-center justify-center font-bold text-lg">05</div>
+                    <div>
+                        <p class="font-semibold text-gray-400">03/2027</p>
+                        <p class="text-sm text-gray-300 mt-0.5">Kolaudace</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- ========== LOKALITA ========== -->
+<section class="py-20 bg-neutralBg">
+    <div class="max-w-screen-xl mx-auto px-6 lg:px-12">
+        <div class="grid grid-cols-1 lg:grid-cols-2 gap-16 items-center">
+            <div class="reveal">
+                <span class="text-primary text-sm font-semibold uppercase tracking-widest mb-3 block">Lokalita</span>
+                <h2 class="text-3xl md:text-4xl font-bold text-textDefault mb-6">Chotěšov — klidné bydlení, skvělá dostupnost</h2>
+                <p class="text-textMuted leading-relaxed mb-6">
+                    Chotěšov je obec v Plzeňském kraji, ležící přibližně 15 km od centra Plzně. Ideální spojení klidu venkova a výborné dopravní dostupnosti do krajského města.
+                </p>
+                <div class="space-y-4">
+                    <div class="flex items-start gap-3">
+                        <div class="w-8 h-8 rounded-full bg-blue-100 flex items-center justify-center text-primary flex-shrink-0 mt-0.5">
+                            <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z"></path></svg>
+                        </div>
+                        <div>
+                            <p class="font-semibold text-textDefault">~20 minut do centra Plzně</p>
+                            <p class="text-textMuted text-sm">Rychlé spojení autem nebo veřejnou dopravou</p>
+                        </div>
+                    </div>
+                    <div class="flex items-start gap-3">
+                        <div class="w-8 h-8 rounded-full bg-blue-100 flex items-center justify-center text-primary flex-shrink-0 mt-0.5">
+                            <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 12l2-2m0 0l7-7 7 7M5 10v10a1 1 0 001 1h3m10-11l2 2m-2-2v10a1 1 0 01-1 1h-3m-6 0a1 1 0 001-1v-4a1 1 0 011-1h2a1 1 0 011 1v4a1 1 0 001 1m-6 0h6"></path></svg>
+                        </div>
+                        <div>
+                            <p class="font-semibold text-textDefault">Centrum obce</p>
+                            <p class="text-textMuted text-sm">Škola, obchody, restaurace — vše na dosah pěšky</p>
+                        </div>
+                    </div>
+                    <div class="flex items-start gap-3">
+                        <div class="w-8 h-8 rounded-full bg-blue-100 flex items-center justify-center text-primary flex-shrink-0 mt-0.5">
+                            <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 3v4M3 5h4M6 17v4m-2-2h4m5-16l2.286 6.857L21 12l-5.714 2.143L13 21l-2.286-6.857L5 12l5.714-2.143L13 3z"></path></svg>
+                        </div>
+                        <div>
+                            <p class="font-semibold text-textDefault">Příroda a klid</p>
+                            <p class="text-textMuted text-sm">Obklopena přírodou Plzeňského kraje — ideální pro rodiny</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Map embed placeholder -->
+            <div class="reveal rounded-2xl overflow-hidden shadow-xl shadow-gray-200 h-80">
+                <iframe
+                    src="https://maps.google.com/maps?q=Chot%C4%9B%C5%A1ov,+Plze%C5%88sk%C3%A1&t=&z=14&ie=UTF8&iwloc=&output=embed"
+                    class="w-full h-full border-0"
+                    loading="lazy"
+                    allowfullscreen
+                    title="Mapa lokality Chotěšov">
+                </iframe>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- ========== KONTAKT ========== -->
+<section id="contact" class="py-20 bg-white">
+    <div class="max-w-screen-xl mx-auto px-6 lg:px-12">
+        <div class="reveal mb-12 text-center">
+            <span class="text-primary text-sm font-semibold uppercase tracking-widest mb-3 block">Kontakt</span>
+            <h2 class="text-3xl md:text-4xl font-bold text-textDefault">Máte zájem? Spojte se s námi</h2>
+        </div>
+
+        <div class="grid grid-cols-1 lg:grid-cols-2 gap-12 items-start">
+            <!-- Broker Card -->
+            <div class="reveal">
+                <div class="bg-neutralBg rounded-2xl p-8">
+                    <!-- Broker photo and name -->
+                    <div class="flex items-center gap-5 mb-8 pb-8 border-b border-gray-200">
+                        <div class="w-20 h-20 rounded-full overflow-hidden shadow-md flex-shrink-0">
+                            <img src="https://www.mixreality.eu/data/filecache/a3/@500x0/Jarda.jpg"
+                                 alt="Jaroslav Straka — realitní makléř"
+                                 class="w-full h-full object-cover object-top">
+                        </div>
+                        <div>
+                            <p class="text-primary text-xs font-semibold uppercase tracking-widest mb-1">Váš realitní makléř</p>
+                            <h3 class="text-2xl font-bold text-textDefault">Jaroslav Straka</h3>
+                            <p class="text-textMuted text-sm">Reality-Plzeň s.r.o.</p>
+                        </div>
+                    </div>
+
+                    <div class="space-y-4 mb-8">
+                        <a href="tel:+420731670412" class="flex items-center gap-4 group">
+                            <span class="w-10 h-10 rounded-full bg-white flex items-center justify-center text-primary shadow-sm group-hover:bg-primary group-hover:text-white transition-colors">
+                                <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 5a2 2 0 012-2h3.28a1 1 0 01.948.684l1.498 4.493a1 1 0 01-.502 1.21l-2.257 1.13a11.042 11.042 0 005.516 5.516l1.13-2.257a1 1 0 011.21-.502l4.493 1.498a1 1 0 01.684.949V19a2 2 0 01-2 2h-1C9.716 21 3 14.284 3 6V5z"></path></svg>
+                            </span>
+                            <div>
+                                <p class="text-xs text-textMuted uppercase tracking-wider">Mobilní telefon</p>
+                                <p class="font-semibold text-textDefault group-hover:text-primary transition-colors">+420 731 670 412</p>
+                            </div>
+                        </a>
+
+                        <a href="tel:+420800230330" class="flex items-center gap-4 group">
+                            <span class="w-10 h-10 rounded-full bg-white flex items-center justify-center text-primary shadow-sm group-hover:bg-primary group-hover:text-white transition-colors">
+                                <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 5a2 2 0 012-2h3.28a1 1 0 01.948.684l1.498 4.493a1 1 0 01-.502 1.21l-2.257 1.13a11.042 11.042 0 005.516 5.516l1.13-2.257a1 1 0 011.21-.502l4.493 1.498a1 1 0 01.684.949V19a2 2 0 01-2 2h-1C9.716 21 3 14.284 3 6V5z"></path></svg>
+                            </span>
+                            <div>
+                                <p class="text-xs text-textMuted uppercase tracking-wider">Zelená linka</p>
+                                <p class="font-semibold text-textDefault group-hover:text-primary transition-colors">+420 800 230 330</p>
+                            </div>
+                        </a>
+
+                        <a href="mailto:jaroslav.straka@mixreality.eu" class="flex items-center gap-4 group">
+                            <span class="w-10 h-10 rounded-full bg-white flex items-center justify-center text-primary shadow-sm group-hover:bg-primary group-hover:text-white transition-colors">
+                                <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z"></path></svg>
+                            </span>
+                            <div>
+                                <p class="text-xs text-textMuted uppercase tracking-wider">E-mail</p>
+                                <p class="font-semibold text-textDefault group-hover:text-primary transition-colors">jaroslav.straka@mixreality.eu</p>
+                            </div>
+                        </a>
+                    </div>
+
+                    <!-- Mixreality links -->
+                    <div class="border-t border-gray-200 pt-6">
+                        <p class="text-xs text-textMuted uppercase tracking-widest mb-4 font-semibold">Další nabídky a služby</p>
+                        <div class="space-y-3">
+                            <a href="https://www.mixreality.eu/nemovitosti-v-cr" target="_blank" rel="noopener"
+                               class="flex items-center gap-2 text-primary hover:text-primary-light font-medium text-sm transition-colors group">
+                                <svg class="w-4 h-4 group-hover:translate-x-1 transition-transform" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M14 5l7 7m0 0l-7 7m7-7H3"></path></svg>
+                                Kompletní nabídka nemovitostí v ČR
+                            </a>
+                            <a href="https://www.mixreality.eu" target="_blank" rel="noopener"
+                               class="flex items-center gap-2 text-primary hover:text-primary-light font-medium text-sm transition-colors group">
+                                <svg class="w-4 h-4 group-hover:translate-x-1 transition-transform" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M14 5l7 7m0 0l-7 7m7-7H3"></path></svg>
+                                Webové stránky Mixreality
+                            </a>
+                            <a href="https://www.mixreality.eu/odhad-ceny-nemovitosti" target="_blank" rel="noopener"
+                               class="flex items-center gap-2 text-primary hover:text-primary-light font-medium text-sm transition-colors group">
+                                <svg class="w-4 h-4 group-hover:translate-x-1 transition-transform" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M14 5l7 7m0 0l-7 7m7-7H3"></path></svg>
+                                Bezplatný odhad ceny nemovitosti
+                            </a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Contact Form -->
+            <div class="reveal">
+                <div class="bg-white border border-gray-100 rounded-2xl p-8 shadow-xl shadow-gray-100">
+                    <h3 class="text-xl font-bold text-textDefault mb-6">Napište nám</h3>
+                    <form class="space-y-4" onsubmit="event.preventDefault(); this.innerHTML='<div class=\'text-center py-8\'><svg class=\'w-16 h-16 text-green-400 mx-auto mb-4\' fill=\'none\' stroke=\'currentColor\' viewBox=\'0 0 24 24\'><path stroke-linecap=\'round\' stroke-linejoin=\'round\' stroke-width=\'1.5\' d=\'M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z\'></path></svg><h4 class=\'text-xl font-semibold text-textDefault mb-2\'>Zpráva odeslána!</h4><p class=\'text-textMuted\'>Makléř Vás bude kontaktovat co nejdříve.</p></div>'">
+                        <div>
+                            <label class="block text-sm font-medium text-textDefault mb-1.5">Jméno a příjmení <span class="text-red-400">*</span></label>
+                            <input type="text" required placeholder="Jan Novák"
+                                   class="w-full border border-gray-200 rounded-xl px-4 py-3 text-textDefault placeholder-gray-300 focus:outline-none focus:ring-2 focus:ring-primary/20 focus:border-primary transition">
+                        </div>
+                        <div>
+                            <label class="block text-sm font-medium text-textDefault mb-1.5">E-mail <span class="text-red-400">*</span></label>
+                            <input type="email" required placeholder="jan@email.cz"
+                                   class="w-full border border-gray-200 rounded-xl px-4 py-3 text-textDefault placeholder-gray-300 focus:outline-none focus:ring-2 focus:ring-primary/20 focus:border-primary transition">
+                        </div>
+                        <div>
+                            <label class="block text-sm font-medium text-textDefault mb-1.5">Telefon</label>
+                            <input type="tel" placeholder="+420 xxx xxx xxx"
+                                   class="w-full border border-gray-200 rounded-xl px-4 py-3 text-textDefault placeholder-gray-300 focus:outline-none focus:ring-2 focus:ring-primary/20 focus:border-primary transition">
+                        </div>
+                        <div>
+                            <label class="block text-sm font-medium text-textDefault mb-1.5">Zpráva</label>
+                            <textarea id="messageInput" rows="4" placeholder="Popište, co hledáte..."
+                                      class="w-full border border-gray-200 rounded-xl px-4 py-3 text-textDefault placeholder-gray-300 focus:outline-none focus:ring-2 focus:ring-primary/20 focus:border-primary transition resize-none"></textarea>
+                        </div>
+                        <p class="text-xs text-textMuted">
+                            <input type="checkbox" required class="mr-2"> Souhlasím se zpracováním <a href="https://www.mixreality.eu/bezpecnost-a-ochrana-osobnich-udaju" target="_blank" class="text-primary underline">osobních údajů</a>.
+                        </p>
+                        <button type="submit"
+                                class="w-full bg-primary text-white font-semibold py-4 rounded-xl hover:bg-primary-light transition-colors shadow-lg shadow-blue-200">
+                            Odeslat zprávu
+                        </button>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- ========== FOOTER ========== -->
+<footer class="bg-gray-900 text-gray-400 py-12">
+    <div class="max-w-screen-xl mx-auto px-6 lg:px-12">
+        <div class="flex flex-col md:flex-row justify-between items-start md:items-center gap-8">
+            <div>
+                <a href="https://www.mixreality.eu" target="_blank" class="text-white font-bold text-xl tracking-tight mb-2 block hover:text-primary transition-colors">
+                    MIX<span class="text-primary font-light">REALITY</span>
+                </a>
+                <p class="text-sm">Reality-Plzeň s.r.o. | Přemyslova 111/3, 301 00 Plzeň</p>
+            </div>
+            <div class="flex flex-col gap-2 text-sm">
+                <a href="tel:+420800230330" class="hover:text-white transition-colors">Zelená linka: +420 800 230 330</a>
+                <a href="tel:+420377322120" class="hover:text-white transition-colors">Tel: +420 377 322 120</a>
+                <a href="https://www.mixreality.eu" target="_blank" class="hover:text-white transition-colors">www.mixreality.eu</a>
+            </div>
+        </div>
+        <p class="mt-8 pt-8 border-t border-gray-800 text-xs text-center">© 2026 Reality-Plzeň s.r.o. Všechna práva vyhrazena. Prezentace projektu novostavba Chotěšov, ul. Plzeňská.</p>
+    </div>
+</footer>
+
+<!-- ========== PROPERTY DETAIL MODAL ========== -->
+<div id="property-modal" class="fixed inset-0 z-50 bg-black/60 backdrop-blur-sm hidden flex items-center justify-center p-4">
+    <div class="bg-white rounded-3xl w-full max-w-4xl max-h-[90vh] overflow-y-auto shadow-2xl">
+        <!-- Main image -->
+        <div class="relative w-full h-64 md:h-96 bg-gray-100">
+            <img id="modal-main-image" src="" alt="Vizualizace bytu" class="w-full h-full object-cover">
+            
+            <!-- Close button -->
+            <button onclick="closeModal()"
+                    class="absolute top-4 right-4 w-10 h-10 bg-white/90 backdrop-blur-sm rounded-full flex items-center justify-center text-gray-700 hover:bg-white shadow-md transition-colors">
+                <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"></path></svg>
+            </button>
+
+            <!-- Title badge -->
+            <div class="absolute bottom-0 left-0 right-0 p-6 bg-gradient-to-t from-black/60 to-transparent">
+                <h3 id="modal-title" class="text-white text-2xl font-bold"></h3>
+                <span class="inline-flex items-center gap-1.5 text-green-300 text-sm font-medium mt-1">
+                    <span class="w-2 h-2 rounded-full bg-green-400 status-dot"></span> Volný k prodeji
+                </span>
+            </div>
+        </div>
+
+        <!-- Thumbnails -->
+        <div id="modal-thumbs" class="flex gap-3 px-6 pt-4"></div>
+
+        <!-- Content -->
+        <div class="p-6 md:p-8">
+            <!-- Price + CTA -->
+            <div class="flex flex-col md:flex-row justify-between items-start md:items-center gap-4 mb-8 pb-6 border-b border-gray-100">
+                <div>
+                    <p class="text-xs text-textMuted uppercase tracking-widest mb-1">Cena s DPH</p>
+                    <p id="modal-cena" class="text-3xl md:text-4xl font-bold text-primary"></p>
+                </div>
+                <button id="modal-interested-btn"
+                        class="bg-primary text-white font-semibold px-8 py-4 rounded-xl hover:bg-primary-light transition-colors shadow-lg shadow-blue-200 w-full md:w-auto">
+                    Mám zájem o tento byt
+                </button>
+            </div>
+
+            <!-- Spec grid -->
+            <div class="grid grid-cols-2 md:grid-cols-5 gap-6 mb-8">
+                <div class="col-span-1">
+                    <p class="text-xs text-textMuted uppercase tracking-wider mb-1">Dispozice</p>
+                    <p id="modal-dispozice" class="text-lg font-bold text-textDefault"></p>
+                </div>
+                <div>
+                    <p class="text-xs text-textMuted uppercase tracking-wider mb-1">Plocha</p>
+                    <p id="modal-plocha" class="text-lg font-bold text-textDefault"></p>
+                </div>
+                <div>
+                    <p class="text-xs text-textMuted uppercase tracking-wider mb-1">Podlaží</p>
+                    <p id="modal-podlazi" class="text-lg font-bold text-textDefault"></p>
+                </div>
+                <div>
+                    <p class="text-xs text-textMuted uppercase tracking-wider mb-1">Orientace</p>
+                    <p id="modal-orientace" class="text-lg font-bold text-textDefault"></p>
+                </div>
+                <div>
+                    <p class="text-xs text-textMuted uppercase tracking-wider mb-1">Balkon/Terasa</p>
+                    <p id="modal-balkon" class="text-lg font-bold text-textDefault"></p>
+                </div>
+            </div>
+
+            <!-- Description -->
+            <div class="bg-blue-50/50 border border-blue-100 rounded-xl p-5">
+                <p class="text-xs text-primary uppercase tracking-wider font-semibold mb-2">Popis jednotky</p>
+                <p id="modal-popis" class="text-textMuted leading-relaxed text-sm"></p>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- ========== NAV SCROLL EFFECT ========== -->
+<script>
+window.addEventListener('scroll', () => {
+    const nav = document.getElementById('navbar');
+    const logo = document.getElementById('nav-logo');
+    if (window.scrollY > 80) {
+        nav.classList.add('bg-white/95', 'backdrop-blur-md', 'shadow-sm', 'border-b', 'border-gray-100');
+        // Switch all nav text to dark
+        nav.querySelectorAll('a').forEach(a => {
+            if (!a.classList.contains('bg-white')) {
+                a.classList.remove('text-white/90', 'text-white');
+                a.classList.add('text-textDefault');
+            } else {
+                a.classList.remove('text-primary');
+                a.classList.add('text-primary');
+            }
+        });
+        logo.classList.remove('text-white');
+        logo.classList.add('text-textDefault');
+    } else {
+        nav.classList.remove('bg-white/95', 'backdrop-blur-md', 'shadow-sm', 'border-b', 'border-gray-100');
+        nav.querySelectorAll('a').forEach(a => {
+            if (!a.classList.contains('bg-white')) {
+                a.classList.add('text-white/90');
+                a.classList.remove('text-textDefault');
+            }
+        });
+        logo.classList.add('text-white');
+        logo.classList.remove('text-textDefault');
+    }
+});
+</script>
+<script src="./src/main.js"></script>
+</body>
+</html>

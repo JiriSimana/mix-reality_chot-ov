@@ -245,8 +245,96 @@ function initScrollAnimations() {
     document.querySelectorAll('.reveal').forEach(el => observer.observe(el));
 }
 
+// ── Scroll Progress Bar ──────────────────────────────────────────
+function initScrollProgress() {
+    const bar = document.getElementById('scroll-progress');
+    if (!bar) return;
+    window.addEventListener('scroll', () => {
+        const max = document.documentElement.scrollHeight - window.innerHeight;
+        bar.style.width = (window.scrollY / max * 100) + '%';
+    }, { passive: true });
+}
+
+// ── Section Dots ─────────────────────────────────────────────────
+function initSectionDots() {
+    const SECTIONS = ['hero', 'projekt', 'byty', 'harmonogram', 'contact'];
+    const dots = document.querySelectorAll('#section-dots button');
+
+    // Click → scroll to section
+    dots.forEach(btn => {
+        btn.addEventListener('click', () => {
+            const sec = btn.dataset.section;
+            const el = sec === 'hero'
+                ? document.querySelector('header')
+                : document.getElementById(sec);
+            if (el) el.scrollIntoView({ behavior: 'smooth' });
+        });
+    });
+
+    // Update active dot on scroll
+    const sectionEls = SECTIONS.map(id =>
+        id === 'hero' ? document.querySelector('header') : document.getElementById(id)
+    );
+    const updateDots = () => {
+        const mid = window.scrollY + window.innerHeight * 0.4;
+        let current = 0;
+        sectionEls.forEach((el, i) => {
+            if (el && el.offsetTop <= mid) current = i;
+        });
+        dots.forEach((btn, i) => btn.classList.toggle('active', i === current));
+    };
+    window.addEventListener('scroll', updateDots, { passive: true });
+    updateDots();
+}
+
+// ── Navbar Scroll Effect ─────────────────────────────────────────
+function initNavbar() {
+    const nav = document.getElementById('navbar');
+    const logoImg = document.querySelector('.logo-img');
+    const navLinks = document.querySelector('.nav-links');
+
+    const setScrolled = (scrolled) => {
+        if (scrolled) {
+            nav.classList.add('bg-white/95', 'backdrop-blur-md', 'shadow-sm', 'border-b', 'border-gray-100');
+            nav.classList.add('scrolled');
+            if (logoImg) logoImg.style.filter = 'none';
+            if (navLinks) { navLinks.classList.remove('text-white/90'); navLinks.classList.add('text-gray-700'); }
+        } else {
+            nav.classList.remove('bg-white/95', 'backdrop-blur-md', 'shadow-sm', 'border-b', 'border-gray-100', 'scrolled');
+            if (logoImg) logoImg.style.filter = 'brightness(0) invert(1)';
+            if (navLinks) { navLinks.classList.add('text-white/90'); navLinks.classList.remove('text-gray-700'); }
+        }
+    };
+
+    window.addEventListener('scroll', () => setScrolled(window.scrollY > 80), { passive: true });
+    setScrolled(window.scrollY > 80);
+}
+
+// ── Parallax Hero ────────────────────────────────────────────────
+function initParallax() {
+    const heroImg = document.getElementById('hero-bg');
+    if (!heroImg) return;
+    window.addEventListener('scroll', () => {
+        if (window.scrollY < window.innerHeight) {
+            heroImg.style.transform = `translateY(${window.scrollY * 0.3}px)`;
+        }
+    }, { passive: true });
+}
+
+// ── Fix "Načtečí" dot label ───────────────────────────────────────
+function fixDotLabels() {
+    const hero = document.querySelector('#section-dots button[data-label="Načtečí"]');
+    if (hero) hero.setAttribute('data-label', 'Nahoru');
+}
+
 document.addEventListener('DOMContentLoaded', () => {
     renderProperties();
     setTimeout(initScrollAnimations, 100);
+    initScrollProgress();
+    initSectionDots();
+    initNavbar();
+    initParallax();
+    fixDotLabels();
     document.addEventListener('keydown', e => { if (e.key === 'Escape') closeModal(); });
 });
+

@@ -13,18 +13,33 @@
 </head>
 <body class="bg-white text-textDefault font-sans">
 
+<!-- Scroll Progress Bar -->
+<div id="scroll-progress"></div>
+
+<!-- Section Nav Dots -->
+<div id="section-dots" aria-hidden="true">
+    <button data-section="hero" data-label="Načtečí"><!-- dot --></button>
+    <button data-section="projekt" data-label="O projektu"><!-- dot --></button>
+    <button data-section="byty" data-label="Byty"><!-- dot --></button>
+    <button data-section="harmonogram" data-label="Harmonogram"><!-- dot --></button>
+    <button data-section="contact" data-label="Kontakt"><!-- dot --></button>
+</div>
+
 <!-- ========== NAVBAR ========== -->
 <nav id="navbar" class="fixed w-full z-40 transition-all duration-300 py-3">
     <div class="max-w-screen-xl mx-auto px-6 lg:px-12 flex justify-between items-center">
-        <a href="#" class="text-white font-bold text-xl tracking-tight flex items-center gap-2" id="nav-logo">
-            <span class="bg-white/20 backdrop-blur-sm rounded px-2 py-1 text-white">MIX</span>
-            <span class="text-white/90 font-light tracking-widest text-sm uppercase">Reality</span>
+        <a href="#" id="nav-logo" class="flex items-center">
+            <img src="https://www.mixreality.eu/data/filecache/b7/logoB_6.png"
+                 alt="Mixreality"
+                 class="h-9 w-auto logo-img"
+                 onerror="this.style.display='none'; document.getElementById('nav-logo-text').style.display='block'">
+            <span id="nav-logo-text" class="text-white font-bold text-xl hidden">MIX<span class="text-blue-300 font-light">REALITY</span></span>
         </a>
-        <div class="hidden md:flex items-center gap-8 text-white/90 text-sm font-medium">
-            <a href="#projekt" class="hover:text-white transition-colors">O projektu</a>
-            <a href="#byty" class="hover:text-white transition-colors">Byty</a>
-            <a href="#harmonogram" class="hover:text-white transition-colors">Harmonogram</a>
-            <a href="#contact" class="hover:text-white transition-colors">Kontakt</a>
+        <div class="hidden md:flex items-center gap-8 nav-links text-white/90 text-sm font-medium">
+            <a href="#projekt" class="hover:opacity-70 transition-opacity">O projektu</a>
+            <a href="#byty" class="hover:opacity-70 transition-opacity">Byty</a>
+            <a href="#harmonogram" class="hover:opacity-70 transition-opacity">Harmonogram</a>
+            <a href="#contact" class="hover:opacity-70 transition-opacity">Kontakt</a>
         </div>
         <a href="#contact" class="bg-white text-primary text-sm font-semibold px-5 py-2.5 rounded-full hover:bg-primary hover:text-white transition-all duration-200 shadow-lg shadow-black/10">
             Mám zájem
@@ -35,8 +50,8 @@
 <!-- ========== HERO ========== -->
 <header class="relative min-h-screen flex flex-col justify-end overflow-hidden">
     <!-- Hero Image — real Mixreality visualization -->
-    <div class="absolute inset-0 z-0">
-        <img src="https://www.mixreality.eu/data/filecache/64/tn_zoom_filename_77533.jpg"
+    <div class="absolute inset-0 z-0" id="hero-bg-wrapper">
+        <img id="hero-bg" src="https://www.mixreality.eu/data/filecache/64/tn_zoom_filename_77533.jpg"
              alt="Vizualizace bytového domu Chotěšov"
              class="w-full h-full object-cover object-center"
              onerror="this.src='https://images.unsplash.com/photo-1628624747186-a941c476b7ef?w=1800&q=80'">
@@ -45,23 +60,23 @@
 
     <div class="relative z-10 max-w-screen-xl mx-auto px-6 lg:px-12 pb-16 md:pb-24 w-full">
         <!-- Status badge -->
-        <div class="flex items-center gap-2 mb-6">
+        <div class="flex items-center gap-2 mb-6 hero-anim-1">
             <span class="status-dot inline-block w-2.5 h-2.5 rounded-full bg-green-400"></span>
             <span class="text-green-300 text-sm font-semibold uppercase tracking-widest">Projekt ve výstavbě</span>
         </div>
 
-        <h1 class="text-4xl md:text-6xl lg:text-7xl font-bold text-white mb-6 leading-tight max-w-3xl">
+        <h1 class="text-4xl md:text-6xl lg:text-7xl font-bold text-white mb-6 leading-tight max-w-3xl hero-anim-2">
             Moderní bydlení<br>
             <span class="text-blue-300">v centru Chotěšova</span>
         </h1>
 
-        <p class="text-lg md:text-xl text-white/80 mb-8 max-w-2xl font-light leading-relaxed">
+        <p class="text-lg md:text-xl text-white/80 mb-8 max-w-2xl font-light leading-relaxed hero-anim-3">
             Cihlový bytový dům na ulici Plzeňská. 10 bytových jednotek dispozic 1+kk až 3+1. 
             Možnost klientských změn, parkovací stání v ceně. Předání plánováno 2026.
         </p>
 
         <!-- Key stats -->
-        <div class="grid grid-cols-2 md:grid-cols-4 gap-4 mb-10">
+        <div class="grid grid-cols-2 md:grid-cols-4 gap-4 mb-10 hero-anim-4">
             <div class="bg-white/10 backdrop-blur-sm rounded-xl p-4 text-center">
                 <p class="text-2xl font-bold text-white">10</p>
                 <p class="text-white/70 text-sm">Bytových jednotek</p>
@@ -80,7 +95,7 @@
             </div>
         </div>
 
-        <div class="flex flex-col sm:flex-row gap-4">
+        <div class="flex flex-col sm:flex-row gap-4 hero-anim-5">
             <a href="#byty" class="inline-flex items-center justify-center gap-2 bg-primary text-white font-semibold px-8 py-4 rounded-full hover:bg-primary-light transition-colors shadow-xl shadow-blue-900/30">
                 Prohlédnout byty
                 <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 14l-7 7m0 0l-7-7m7 7V3"></path></svg>
@@ -110,12 +125,12 @@
 
                 <!-- Feature tags -->
                 <div class="flex flex-wrap gap-3">
-                    <span class="px-4 py-2 bg-blue-50 text-primary rounded-full text-sm font-medium">Cihlová konstrukce</span>
-                    <span class="px-4 py-2 bg-blue-50 text-primary rounded-full text-sm font-medium">Parkovací stání v ceně</span>
-                    <span class="px-4 py-2 bg-blue-50 text-primary rounded-full text-sm font-medium">Nízké provozní náklady</span>
-                    <span class="px-4 py-2 bg-blue-50 text-primary rounded-full text-sm font-medium">Klientské změny</span>
-                    <span class="px-4 py-2 bg-blue-50 text-primary rounded-full text-sm font-medium">Centrum Chotěšova</span>
-                    <span class="px-4 py-2 bg-blue-50 text-primary rounded-full text-sm font-medium">20 min od Plzně</span>
+                    <span class="px-4 py-2 bg-blue-50 text-primary rounded-full text-sm font-medium feature-tag">Cihlová konstrukce</span>
+                    <span class="px-4 py-2 bg-blue-50 text-primary rounded-full text-sm font-medium feature-tag">Parkovací stání v ceně</span>
+                    <span class="px-4 py-2 bg-blue-50 text-primary rounded-full text-sm font-medium feature-tag">Nízké provozní náklady</span>
+                    <span class="px-4 py-2 bg-blue-50 text-primary rounded-full text-sm font-medium feature-tag">Klientské změny</span>
+                    <span class="px-4 py-2 bg-blue-50 text-primary rounded-full text-sm font-medium feature-tag">Centrum Chotěšova</span>
+                    <span class="px-4 py-2 bg-blue-50 text-primary rounded-full text-sm font-medium feature-tag">20 min od Plzně</span>
                 </div>
             </div>
 
@@ -516,38 +531,7 @@
     </div>
 </div>
 
-<!-- ========== NAV SCROLL EFFECT ========== -->
-<script>
-window.addEventListener('scroll', () => {
-    const nav = document.getElementById('navbar');
-    const logo = document.getElementById('nav-logo');
-    if (window.scrollY > 80) {
-        nav.classList.add('bg-white/95', 'backdrop-blur-md', 'shadow-sm', 'border-b', 'border-gray-100');
-        // Switch all nav text to dark
-        nav.querySelectorAll('a').forEach(a => {
-            if (!a.classList.contains('bg-white')) {
-                a.classList.remove('text-white/90', 'text-white');
-                a.classList.add('text-textDefault');
-            } else {
-                a.classList.remove('text-primary');
-                a.classList.add('text-primary');
-            }
-        });
-        logo.classList.remove('text-white');
-        logo.classList.add('text-textDefault');
-    } else {
-        nav.classList.remove('bg-white/95', 'backdrop-blur-md', 'shadow-sm', 'border-b', 'border-gray-100');
-        nav.querySelectorAll('a').forEach(a => {
-            if (!a.classList.contains('bg-white')) {
-                a.classList.add('text-white/90');
-                a.classList.remove('text-textDefault');
-            }
-        });
-        logo.classList.add('text-white');
-        logo.classList.remove('text-textDefault');
-    }
-});
-</script>
+<!-- ========== NAV SCROLL + DOTS + PROGRESS — all handled in main.js -->
 <script src="./src/main.js"></script>
 </body>
 </html>

@@ -6,11 +6,29 @@ html { scroll-behavior: smooth; }
 body { background: #fff; color: #2c2c2c; -webkit-font-smoothing: antialiased; }
 
 /* ----------------------------------------
-   Reveal Animations
+   Page Intro Animation
+---------------------------------------- */
+@keyframes fadeInUp {
+    from { opacity: 0; transform: translateY(24px); }
+    to   { opacity: 1; transform: translateY(0); }
+}
+@keyframes fadeIn {
+    from { opacity: 0; }
+    to   { opacity: 1; }
+}
+
+.hero-anim-1 { animation: fadeIn 0.9s ease both; animation-delay: 0.1s; }
+.hero-anim-2 { animation: fadeInUp 0.9s ease both; animation-delay: 0.3s; }
+.hero-anim-3 { animation: fadeInUp 0.9s ease both; animation-delay: 0.5s; }
+.hero-anim-4 { animation: fadeInUp 0.9s ease both; animation-delay: 0.7s; }
+.hero-anim-5 { animation: fadeInUp 0.9s ease both; animation-delay: 0.9s; }
+
+/* ----------------------------------------
+   Reveal on Scroll
 ---------------------------------------- */
 .reveal {
     opacity: 0;
-    transform: translateY(20px);
+    transform: translateY(22px);
     transition: opacity 0.7s ease-out, transform 0.7s ease-out;
 }
 .reveal.active {
@@ -19,15 +37,79 @@ body { background: #fff; color: #2c2c2c; -webkit-font-smoothing: antialiased; }
 }
 
 /* ----------------------------------------
+   Scroll Progress Bar
+---------------------------------------- */
+#scroll-progress {
+    position: fixed;
+    top: 0;
+    left: 0;
+    height: 3px;
+    background: linear-gradient(to right, #1d4ed8, #60a5fa);
+    z-index: 9999;
+    width: 0%;
+    transition: width 0.1s linear;
+    border-radius: 0 2px 2px 0;
+}
+
+/* ----------------------------------------
+   Section Nav Dots (mobile + desktop right side)
+---------------------------------------- */
+#section-dots {
+    position: fixed;
+    right: 1.25rem;
+    top: 50%;
+    transform: translateY(-50%);
+    z-index: 40;
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+}
+#section-dots button {
+    width: 9px;
+    height: 9px;
+    border-radius: 9999px;
+    background: rgba(0,0,0,0.2);
+    border: none;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    padding: 0;
+    position: relative;
+}
+#section-dots button.active {
+    background: #1d4ed8;
+    transform: scale(1.4);
+}
+#section-dots button::after {
+    content: attr(data-label);
+    position: absolute;
+    right: calc(100% + 10px);
+    top: 50%;
+    transform: translateY(-50%);
+    background: rgba(0,0,0,0.75);
+    color: white;
+    font-size: 11px;
+    font-family: "Inter", sans-serif;
+    white-space: nowrap;
+    padding: 3px 8px;
+    border-radius: 4px;
+    opacity: 0;
+    transition: opacity 0.2s;
+    pointer-events: none;
+}
+#section-dots button:hover::after {
+    opacity: 1;
+}
+
+/* ----------------------------------------
    Table Styling
 ---------------------------------------- */
 .property-table th {
-    padding-bottom: 1.25rem;
+    padding: 0.75rem 0.5rem 1rem 0;
     font-weight: 500;
     color: #9ca3af;
     text-align: left;
-    font-size: 0.8rem;
-    letter-spacing: 0.05em;
+    font-size: 0.75rem;
+    letter-spacing: 0.06em;
     text-transform: uppercase;
 }
 .property-table td {
@@ -36,10 +118,10 @@ body { background: #fff; color: #2c2c2c; -webkit-font-smoothing: antialiased; }
     vertical-align: middle;
 }
 .property-row {
-    transition: background-color 0.15s;
+    transition: background-color 0.15s ease;
 }
 .property-row:hover {
-    background-color: #f8faff;
+    background-color: #f0f4ff;
 }
 
 /* ----------------------------------------
@@ -53,18 +135,66 @@ body { background: #fff; color: #2c2c2c; -webkit-font-smoothing: antialiased; }
     opacity: 1;
 }
 #property-modal > div {
-    transform: translateY(20px) scale(0.97);
-    transition: transform 0.3s ease;
+    transform: translateY(24px) scale(0.97);
+    transition: transform 0.35s cubic-bezier(0.34, 1.56, 0.64, 1);
 }
 #property-modal.modal-visible > div {
     transform: translateY(0) scale(1);
 }
 
 /* ----------------------------------------
+   Smooth Number Counter
+---------------------------------------- */
+.stat-number {
+    transition: all 0.3s ease;
+    display: inline-block;
+}
+
+/* ----------------------------------------
    Hero Badge pulse
 ---------------------------------------- */
 @keyframes pulse-dot {
-    0%, 100% { opacity: 1; }
-    50% { opacity: 0.4; }
+    0%, 100% { opacity: 1; box-shadow: 0 0 0 0 rgba(74, 222, 128, 0.5); }
+    50% { opacity: 0.85; box-shadow: 0 0 0 5px rgba(74, 222, 128, 0); }
 }
 .status-dot { animation: pulse-dot 2s infinite; }
+
+/* ----------------------------------------
+   Navbar Logo
+---------------------------------------- */
+#nav-logo img {
+    height: 36px;
+    width: auto;
+    transition: opacity 0.3s;
+    filter: brightness(0) invert(1); /* white on hero */
+}
+#navbar.scrolled #nav-logo img {
+    filter: none; /* original colors on white bg */
+}
+
+/* ----------------------------------------
+   Parallax Hero (JS-controlled via transform)
+---------------------------------------- */
+#hero-bg {
+    will-change: transform;
+    transform-origin: center center;
+}
+
+/* ----------------------------------------
+   Smooth link underline hover
+---------------------------------------- */
+nav a { position: relative; }
+
+/* ----------------------------------------
+   Feature tag hover pop
+---------------------------------------- */
+.feature-tag {
+    transition: all 0.2s ease;
+    cursor: default;
+}
+.feature-tag:hover {
+    background: #1d4ed8;
+    color: white;
+    transform: translateY(-2px);
+    box-shadow: 0 4px 12px rgba(29, 78, 216, 0.25);
+}

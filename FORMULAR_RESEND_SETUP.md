@@ -33,13 +33,31 @@ E-maily musí chodit z **ověřené domény**, jinak spadnou do spamu.
 > Tip: jednu vlastní doménu ověříš jednou a posílají přes ni **všechny** weby.
 
 ### 3) Env proměnné ve Vercelu
-Vercel → **Project → Settings → Environment Variables** (Production i Preview):
+Vercel → **Project → Settings → Environment Variables** (Production i Preview).
 
-| Název | Hodnota (příklad) |
+**Povinné:**
+
+| Název | Hodnota (Chotěšov) |
 |---|---|
 | `RESEND_API_KEY` | `re_xxxxxxxxxxxx` |
 | `CONTACT_TO` | `jaroslav.straka@mixreality.eu` (víc adres oddělíš čárkou) |
-| `CONTACT_FROM` | `Novostavba Chotěšov <noreply@mail.tvojedomena.cz>` |
+| `CONTACT_FROM` | `Novostavba Chotěšov <noreply@send.smartcase.cz>` |
+
+> `CONTACT_FROM` musí být z **ověřené domény** (`send.smartcase.cz`). Display name (před `<`) = co příjemce vidí jako odesílatele.
+
+**Volitelné — auto-odpověď návštěvníkovi („Děkujeme za vyplnění"):**
+
+| Název | Hodnota (Chotěšov) |
+|---|---|
+| `AUTOREPLY` | `on` |
+| `BRAND_NAME` | `Novostavba Chotěšov` |
+| `AUTOREPLY_SUBJECT` | `Děkujeme za Vaši zprávu — Novostavba Chotěšov` |
+| `AUTOREPLY_TEXT` | `děkujeme za Váš zájem o novostavbu v Chotěšově. Vaši zprávu jsme obdrželi a co nejdříve se Vám ozveme.` |
+| `BROKER_NAME` | `Jaroslav Straka` |
+| `BROKER_PHONE` | `+420 731 670 412` |
+| `BROKER_EMAIL` | `jaroslav.straka@mixreality.eu` |
+
+> Když `AUTOREPLY` nenastavíš (nebo dáš jinou hodnotu než on/true/yes/ano/1), pošle se jen notifikace makléři. Auto-odpověď chodí návštěvníkovi z `CONTACT_FROM`, ale `reply-to` míří na makléře.
 
 Po uložení **redeploy** projektu.
 

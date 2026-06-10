@@ -55,10 +55,12 @@ Vercel → **Project → Settings → Environment Variables** (Production i Prev
 | `AUTOREPLY_TEXT` | `děkujeme za Váš zájem o novostavbu v Chotěšově. Vaši zprávu jsme obdrželi a co nejdříve se Vám ozveme.` |
 | `BROKER_NAME` | `Jaroslav Straka` |
 | `BROKER_PHONE` | `+420 731 670 412` |
+| `COMPANY_NAME` | `Mixreality` |
 | `BROKER_EMAIL` | `jaroslav.straka@mixreality.eu` |
+| `BROKER_PHOTO` | `https://mix-reality-chot-ov.vercel.app/images/makler-jarda-square.jpg` |
 | `AUTOREPLY_IMAGE` | `https://mix-reality-chot-ov.vercel.app/images/viz-letecka-1.jpg` |
-| `SITE_URL` | `https://mix-reality-chot-ov.vercel.app` |
-| `AUTOREPLY_CTA` | `Prohlédnout byty` |
+| `SITE_URL` | `https://www.mixreality.eu` |
+| `AUTOREPLY_CTA` | `Prohlédnout naše nemovitosti` |
 | `BRAND_COLOR` | `#1d4ed8` (volitelné, default modrá) |
 
 > `AUTOREPLY_IMAGE` = obrázek v hlavičce e-mailu, `SITE_URL` = cíl tlačítka. Bez nich e-mail funguje dál, jen bez obrázku/tlačítka.

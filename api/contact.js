@@ -9,9 +9,11 @@
 // VOLITELNÉ — auto-odpověď návštěvníkovi ("Děkujeme za vyplnění"):
 //   AUTOREPLY         — "on" zapne auto-odpověď (jinak vypnuto)
 //   BRAND_NAME        — jméno projektu v hlavičce/podpisu (jinak se vezme z CONTACT_FROM)
+//   COMPANY_NAME      — název společnosti do podpisu (např. "Mixreality")
 //   AUTOREPLY_SUBJECT — předmět poděkování
 //   AUTOREPLY_TEXT    — úvodní odstavec poděkování
 //   BROKER_NAME / BROKER_PHONE / BROKER_EMAIL — kontakt do podpisu (BROKER_EMAIL jinak = první CONTACT_TO)
+//   BROKER_PHOTO      — URL portrétu makléře (kulatý avatar v podpisu)
 //   AUTOREPLY_IMAGE   — URL obrázku do hlavičky e-mailu (např. vizualizace projektu)
 //   SITE_URL          — odkaz pro tlačítko v e-mailu (když nastaveno, zobrazí se CTA)
 //   AUTOREPLY_CTA     — text tlačítka (default "Zobrazit web")
@@ -105,17 +107,18 @@ module.exports = async (req, res) => {
   // Selhání auto-odpovědi NEsmí shodit request — hlavní e-mail makléři už odešel.
   if (truthy(process.env.AUTOREPLY)) {
     const brand = process.env.BRAND_NAME || brandFromFrom(from) || 'Náš tým';
+    const company = process.env.COMPANY_NAME || '';
     const subject = process.env.AUTOREPLY_SUBJECT || `Děkujeme za Vaši zprávu — ${brand}`;
     const intro = process.env.AUTOREPLY_TEXT || 'děkujeme za Vaši zprávu. Obdrželi jsme ji a co nejdříve se Vám ozveme.';
     const brokerName = process.env.BROKER_NAME || '';
     const brokerPhone = process.env.BROKER_PHONE || '';
     const brokerEmail = process.env.BROKER_EMAIL || toList[0];
+    const brokerPhoto = process.env.BROKER_PHOTO || '';
     const brandColor = process.env.BRAND_COLOR || '#1d4ed8';
     const image = process.env.AUTOREPLY_IMAGE || '';
     const siteUrl = process.env.SITE_URL || '';
     const ctaLabel = process.env.AUTOREPLY_CTA || 'Zobrazit web';
     const phoneLink = brokerPhone ? brokerPhone.replace(/[^0-9+]/g, '') : '';
-    const sig = [brand, brokerName, brokerPhone, brokerEmail].filter(Boolean);
 
     // Plain-text varianta (pro klienty bez HTML)
     const arText = [
@@ -126,7 +129,7 @@ module.exports = async (req, res) => {
       ...(siteUrl ? ['', `${ctaLabel}: ${siteUrl}`] : []),
       '',
       'S pozdravem,',
-      ...sig,
+      ...[brokerName, brand, company, brokerPhone, brokerEmail].filter(Boolean),
     ].join('\n');
 
     // HTML varianta — tabulkový layout + inline styly (kompatibilní s e-mail klienty)
@@ -148,14 +151,20 @@ module.exports = async (req, res) => {
         </td></tr></table>` : ''}
       </td></tr>
       <tr><td style="padding:0 32px;"><hr style="border:none;border-top:1px solid #eceef1;margin:0;"></td></tr>
-      <tr><td style="padding:24px 32px;color:#2c2c2c;font-size:15px;line-height:1.5;">
-        <p style="margin:0 0 8px;color:#6b7280;font-size:13px;">S pozdravem,</p>
-        <p style="margin:0;font-weight:bold;font-size:16px;">${escape(brand)}</p>
-        ${brokerName ? `<p style="margin:6px 0 0;">${escape(brokerName)}</p>` : ''}
-        ${brokerPhone ? `<p style="margin:3px 0 0;"><a href="tel:${escape(phoneLink)}" style="color:${brandColor};text-decoration:none;">${escape(brokerPhone)}</a></p>` : ''}
-        ${brokerEmail ? `<p style="margin:3px 0 0;"><a href="mailto:${escape(brokerEmail)}" style="color:${brandColor};text-decoration:none;">${escape(brokerEmail)}</a></p>` : ''}
+      <tr><td style="padding:24px 32px;">
+        <p style="margin:0 0 14px;color:#6b7280;font-size:13px;font-family:Arial,Helvetica,sans-serif;">S pozdravem,</p>
+        <table role="presentation" cellpadding="0" cellspacing="0"><tr>
+          ${brokerPhoto ? `<td valign="top" style="padding-right:16px;width:60px;"><img src="${escape(brokerPhoto)}" width="60" height="60" alt="${escape(brokerName)}" style="display:block;width:60px;height:60px;border-radius:50%;border:0;"></td>` : ''}
+          <td valign="top" style="font-family:Arial,Helvetica,sans-serif;color:#2c2c2c;">
+            ${brokerName ? `<div style="font-weight:bold;font-size:16px;line-height:1.3;">${escape(brokerName)}</div>` : ''}
+            <div style="font-size:13px;color:#6b7280;line-height:1.5;margin-top:2px;">${escape(brand)}</div>
+            ${company ? `<div style="font-size:13px;color:#374151;font-weight:bold;line-height:1.5;">${escape(company)}</div>` : ''}
+            ${brokerPhone ? `<div style="font-size:14px;line-height:1.6;margin-top:6px;"><a href="tel:${escape(phoneLink)}" style="color:${brandColor};text-decoration:none;">${escape(brokerPhone)}</a></div>` : ''}
+            ${brokerEmail ? `<div style="font-size:14px;line-height:1.6;"><a href="mailto:${escape(brokerEmail)}" style="color:${brandColor};text-decoration:none;">${escape(brokerEmail)}</a></div>` : ''}
+          </td>
+        </tr></table>
       </td></tr>
-      <tr><td style="background:#f4f5f7;padding:16px 32px;text-align:center;color:#9ca3af;font-size:12px;line-height:1.5;">
+      <tr><td style="background:#f4f5f7;padding:16px 32px;text-align:center;color:#9ca3af;font-size:12px;line-height:1.5;font-family:Arial,Helvetica,sans-serif;">
         Toto je automatické potvrzení o přijetí Vaší zprávy. Brzy se Vám ozveme.
       </td></tr>
     </table>

@@ -494,6 +494,57 @@ function initFAQ() {
     });
 }
 
+// ── Kontaktní formulář → Resend (přes /api/contact) ──────────────
+function initContactForm() {
+    const form = document.getElementById('contact-form');
+    if (!form) return;
+    const btn = document.getElementById('contact-submit');
+    const status = document.getElementById('contact-status');
+
+    form.addEventListener('submit', async (e) => {
+        e.preventDefault();
+        if (status) status.className = 'text-sm text-center hidden';
+
+        const data = {
+            jmeno: form.jmeno?.value.trim() || '',
+            email: form.email?.value.trim() || '',
+            telefon: form.telefon?.value.trim() || '',
+            zprava: form.zprava?.value.trim() || '',
+            hypoteka: !!form.hypoteka?.checked,
+            website: form.website?.value || '',   // honeypot
+        };
+
+        const orig = btn.textContent;
+        btn.disabled = true;
+        btn.textContent = 'Odesílám…';
+
+        try {
+            const resp = await fetch('/api/contact', {
+                method: 'POST',
+                headers: { 'Content-Type': 'application/json' },
+                body: JSON.stringify(data),
+            });
+            const json = await resp.json().catch(() => ({}));
+            if (resp.ok && json.ok) {
+                form.innerHTML = `<div class="text-center py-8">
+                    <svg class="w-16 h-16 text-green-400 mx-auto mb-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z"></path></svg>
+                    <h4 class="text-xl font-semibold text-textDefault mb-2">Zpráva odeslána!</h4>
+                    <p class="text-textMuted">Děkujeme, makléř Vás bude kontaktovat co nejdříve.</p>
+                </div>`;
+            } else {
+                throw new Error(json.error || 'Zprávu se nepodařilo odeslat.');
+            }
+        } catch (err) {
+            btn.disabled = false;
+            btn.textContent = orig;
+            if (status) {
+                status.textContent = err.message || 'Zprávu se nepodařilo odeslat. Zkuste to prosím znovu, nebo nás kontaktujte telefonicky.';
+                status.className = 'text-sm text-center text-red-500';
+            }
+        }
+    });
+}
+
 // ── Floating CTA ──────────────────────────────────────────────────
 function initFloatingCTA() {
     const cta = document.getElementById('floating-cta');
@@ -529,6 +580,7 @@ document.addEventListener('DOMContentLoaded', () => {
     initFloatingCTA();
     initBeforeAfter();
     initGallery();
+    initContactForm();
     fixDotLabels();
     document.addEventListener('keydown', e => { if (e.key === 'Escape') closeModal(); });
 });

@@ -4,12 +4,23 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Novostavba Chotěšov — Bytový dům na ulici Plzeňská</title>
-    <meta name="description" content="Exkluzivní nabídka bytů v novostavbě bytového domu v centru Chotěšova, ul. Plzeňská. 10 bytových jednotek 1+kk až 3+1. Projekt ve výstavbě, předání 2026.">
+    <meta name="description" content="Exkluzivní nabídka bytů v novostavbě bytového domu v centru Chotěšova, ul. Plzeňská. 10 bytových jednotek 1+kk až 3+1. Projekt ve výstavbě.">
+    <meta name="theme-color" content="#1d4ed8">
+
+    <!-- Open Graph / sociální náhled -->
+    <meta property="og:type" content="website">
+    <meta property="og:locale" content="cs_CZ">
+    <meta property="og:title" content="Novostavba Chotěšov — Bytový dům na ulici Plzeňská">
+    <meta property="og:description" content="10 bytových jednotek 1+kk až 3+1 v novostavbě v centru Chotěšova. Parkovací stání v ceně, klientské změny. Projekt ve výstavbě.">
+    <meta property="og:image" content="https://mix-reality-chot-ov.vercel.app/images/viz-letecka-1.jpg">
+    <meta property="og:url" content="https://mix-reality-chot-ov.vercel.app/">
+    <meta name="twitter:card" content="summary_large_image">
+
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="preload" as="image" href="./images/viz-letecka-1.jpg" fetchpriority="high">
     <link href="./dist/output.css" rel="stylesheet">
-    <link href="./src/style.css" rel="stylesheet">
 </head>
 <body class="bg-white text-textDefault font-sans">
 
@@ -18,9 +29,11 @@
 
 <!-- Section Nav Dots -->
 <div id="section-dots" aria-hidden="true">
-    <button data-section="hero" data-label="Načtečí"><!-- dot --></button>
+    <button data-section="hero" data-label="Načtení"><!-- dot --></button>
     <button data-section="projekt" data-label="O projektu"><!-- dot --></button>
     <button data-section="byty" data-label="Byty"><!-- dot --></button>
+    <button data-section="realita" data-label="Vizualizace × Realita"><!-- dot --></button>
+    <button data-section="galerie" data-label="Galerie z výstavby"><!-- dot --></button>
     <button data-section="harmonogram" data-label="Harmonogram"><!-- dot --></button>
     <button data-section="contact" data-label="Kontakt"><!-- dot --></button>
 </div>
@@ -38,6 +51,7 @@
         <div class="hidden md:flex items-center gap-8 nav-links text-white/90 text-sm font-medium">
             <a href="#projekt" class="hover:opacity-70 transition-opacity">O projektu</a>
             <a href="#byty" class="hover:opacity-70 transition-opacity">Byty</a>
+            <a href="#realita" class="hover:opacity-70 transition-opacity">Výstavba</a>
             <a href="#harmonogram" class="hover:opacity-70 transition-opacity">Harmonogram</a>
             <a href="#contact" class="hover:opacity-70 transition-opacity">Kontakt</a>
         </div>
@@ -51,11 +65,13 @@
 <header class="relative min-h-screen flex flex-col justify-end overflow-hidden">
     <!-- Hero Image — real Mixreality visualization -->
     <div class="absolute inset-0 z-0" id="hero-bg-wrapper">
-        <img id="hero-bg" src="https://www.mixreality.eu/data/filecache/64/tn_zoom_filename_77533.jpg"
-             alt="Vizualizace bytového domu Chotěšov"
+        <img id="hero-bg" src="./images/viz-letecka-1.jpg"
+             alt="Ilustrační vizualizace bytového domu Chotěšov"
+             fetchpriority="high" decoding="async"
              class="w-full h-full object-cover object-center"
              onerror="this.src='https://images.unsplash.com/photo-1628624747186-a941c476b7ef?w=1800&q=80'">
         <div class="absolute inset-0 bg-gradient-to-t from-black/80 via-black/40 to-black/20"></div>
+        <span class="absolute bottom-4 right-4 z-10 text-[11px] uppercase tracking-wider text-white/70 bg-black/30 backdrop-blur-sm px-2.5 py-1 rounded-full">Ilustrační vizualizace</span>
     </div>
 
     <div class="relative z-10 max-w-screen-xl mx-auto px-6 lg:px-12 pb-16 md:pb-24 w-full">
@@ -136,22 +152,24 @@
 
             <!-- Second visualization image -->
             <div class="reveal">
-                <div class="rounded-2xl overflow-hidden shadow-2xl shadow-gray-200 aspect-[4/3]">
-                    <img src="https://www.mixreality.eu/data/filecache/8d/tn_zoom_filename_77532.jpg"
-                         alt="Exteriér bytového domu"
+                <div class="relative rounded-2xl overflow-hidden shadow-2xl shadow-gray-200 aspect-[4/3]">
+                    <img src="./images/viz-dvorek-1.jpg"
+                         alt="Ilustrační vizualizace exteriéru bytového domu"
                          class="w-full h-full object-cover hover:scale-105 transition-transform duration-700"
                          onerror="this.src='https://images.unsplash.com/photo-1600607686527-6fb886090705?w=800&q=80'">
+                    <span class="absolute bottom-3 right-3 text-[10px] uppercase tracking-wider text-white/80 bg-black/40 backdrop-blur-sm px-2 py-0.5 rounded-full">Ilustrační vizualizace</span>
                 </div>
             </div>
         </div>
 
         <!-- Interior visualization below -->
         <div class="mt-16 grid grid-cols-1 md:grid-cols-3 gap-6 reveal">
-            <div class="col-span-2 rounded-2xl overflow-hidden aspect-video shadow-lg shadow-gray-200">
-                <img src="https://www.mixreality.eu/data/filecache/a0/tn_zoom_filename_77671.jpg"
-                     alt="Interiér bytu"
+            <div class="relative col-span-2 rounded-2xl overflow-hidden aspect-video shadow-lg shadow-gray-200">
+                <img src="./images/viz-interier-1.jpg"
+                     alt="Ilustrační vizualizace interiéru bytu"
                      class="w-full h-full object-cover hover:scale-105 transition-transform duration-700"
                      onerror="this.src='https://images.unsplash.com/photo-1600566753190-17f0baa2a6c3?w=800&q=80'">
+                <span class="absolute bottom-3 right-3 text-[10px] uppercase tracking-wider text-white/80 bg-black/40 backdrop-blur-sm px-2 py-0.5 rounded-full">Ilustrační vizualizace</span>
             </div>
             <div class="flex flex-col gap-4">
                 <div class="bg-neutralBg rounded-2xl p-8 flex-1 flex flex-col justify-center">
@@ -273,6 +291,124 @@
     </div>
 </section>
 
+<!-- ========== VIZUALIZACE × REALITA ========== -->
+<section id="realita" class="py-20 bg-neutralBg">
+    <div class="max-w-screen-xl mx-auto px-6 lg:px-12">
+        <div class="reveal text-center mb-4">
+            <span class="text-primary text-sm font-semibold uppercase tracking-widest mb-3 block">Vizualizace × Realita</span>
+            <h2 class="text-3xl md:text-4xl font-bold text-textDefault">Není to jen vizualizace</h2>
+        </div>
+        <p class="text-textMuted text-center max-w-2xl mx-auto mb-12 reveal">
+            Projekt reálně roste. Přetáhněte posuvník a porovnejte ilustrační vizualizaci s aktuálním stavem stavby — fotografie z května 2026.
+        </p>
+
+        <div class="grid grid-cols-1 lg:grid-cols-3 gap-6">
+            <!-- Pair 1 — letecký pohled -->
+            <div class="reveal">
+                <div class="ba-slider rounded-2xl overflow-hidden shadow-lg shadow-gray-200 aspect-[4/3] select-none"
+                     data-after="./images/viz-letecka-1.jpg" data-before="./images/stavba-dron-1.jpg">
+                    <img class="ba-after" src="./images/viz-letecka-1.jpg" alt="Vizualizace — letecký pohled">
+                    <div class="ba-before-wrap"><img class="ba-before" src="./images/stavba-dron-1.jpg" alt="Realita — letecký pohled ze stavby"></div>
+                    <div class="ba-handle"><span class="ba-grip"></span></div>
+                    <span class="ba-tag ba-tag-left">Realita</span>
+                    <span class="ba-tag ba-tag-right">Vizualizace</span>
+                </div>
+                <p class="text-center text-sm text-textMuted mt-3">Letecký pohled na bytový dům</p>
+            </div>
+            <!-- Pair 2 — dvorek -->
+            <div class="reveal">
+                <div class="ba-slider rounded-2xl overflow-hidden shadow-lg shadow-gray-200 aspect-[4/3] select-none"
+                     data-after="./images/viz-dvorek-1.jpg" data-before="./images/stavba-dvorek-1.jpg">
+                    <img class="ba-after" src="./images/viz-dvorek-1.jpg" alt="Vizualizace — vnitřní dvůr">
+                    <div class="ba-before-wrap"><img class="ba-before" src="./images/stavba-dvorek-1.jpg" alt="Realita — vnitřní dvůr ve výstavbě"></div>
+                    <div class="ba-handle"><span class="ba-grip"></span></div>
+                    <span class="ba-tag ba-tag-left">Realita</span>
+                    <span class="ba-tag ba-tag-right">Vizualizace</span>
+                </div>
+                <p class="text-center text-sm text-textMuted mt-3">Vnitřní dvůr a parkovací stání</p>
+            </div>
+            <!-- Pair 3 — interiér -->
+            <div class="reveal">
+                <div class="ba-slider rounded-2xl overflow-hidden shadow-lg shadow-gray-200 aspect-[4/3] select-none"
+                     data-after="./images/viz-interier-1.jpg" data-before="./images/stavba-interier-1.jpg">
+                    <img class="ba-after" src="./images/viz-interier-1.jpg" alt="Vizualizace — interiér bytu">
+                    <div class="ba-before-wrap"><img class="ba-before" src="./images/stavba-interier-1.jpg" alt="Realita — interiér ve výstavbě"></div>
+                    <div class="ba-handle"><span class="ba-grip"></span></div>
+                    <span class="ba-tag ba-tag-left">Realita</span>
+                    <span class="ba-tag ba-tag-right">Vizualizace</span>
+                </div>
+                <p class="text-center text-sm text-textMuted mt-3">Interiér bytové jednotky</p>
+            </div>
+        </div>
+        <p class="text-center text-xs text-textMuted mt-8 reveal">
+            Vizualizace jsou ilustrační a slouží k představě finální podoby. Skutečné provedení se může v detailech lišit.
+        </p>
+    </div>
+</section>
+
+<!-- ========== GALERIE Z VÝSTAVBY ========== -->
+<section id="galerie" class="py-20 bg-white">
+    <div class="max-w-screen-xl mx-auto px-6 lg:px-12">
+        <div class="reveal mb-4 flex flex-col md:flex-row md:items-end md:justify-between gap-4">
+            <div>
+                <span class="text-primary text-sm font-semibold uppercase tracking-widest mb-3 block">Galerie z výstavby</span>
+                <h2 class="text-3xl md:text-4xl font-bold text-textDefault">Skutečné fotografie ze stavby</h2>
+            </div>
+            <span class="inline-flex items-center gap-2 text-sm bg-green-100 text-green-700 font-medium px-3 py-1.5 rounded-full self-start">
+                <span class="w-2 h-2 rounded-full bg-green-500 status-dot"></span> Aktuální fotografie — květen 2026
+            </span>
+        </div>
+        <p class="text-textMuted max-w-2xl mb-10 reveal">Fotografie z dronu i přímo ze stavby. Klikněte pro zvětšení.</p>
+
+        <div class="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4" id="gallery-grid">
+            <button class="gallery-item col-span-2 row-span-2 group relative rounded-2xl overflow-hidden aspect-square md:aspect-auto" data-full="./images/stavba-dron-1.jpg" data-caption="Letecký pohled na stavbu — dron">
+                <img src="./images/stavba-dron-1.jpg" alt="Letecký pohled na stavbu" loading="lazy" class="w-full h-full object-cover transition-transform duration-500 group-hover:scale-105">
+            </button>
+            <button class="gallery-item group relative rounded-2xl overflow-hidden aspect-square" data-full="./images/stavba-dron-2.jpg" data-caption="Stavba z dronu">
+                <img src="./images/stavba-dron-2.jpg" alt="Stavba z dronu" loading="lazy" class="w-full h-full object-cover transition-transform duration-500 group-hover:scale-105">
+            </button>
+            <button class="gallery-item group relative rounded-2xl overflow-hidden aspect-square" data-full="./images/stavba-dvorek-1.jpg" data-caption="Vnitřní dvůr ve výstavbě">
+                <img src="./images/stavba-dvorek-1.jpg" alt="Vnitřní dvůr ve výstavbě" loading="lazy" class="w-full h-full object-cover transition-transform duration-500 group-hover:scale-105">
+            </button>
+            <button class="gallery-item group relative rounded-2xl overflow-hidden aspect-square" data-full="./images/stavba-dvorek-2.jpg" data-caption="Exteriér domu ze stavby">
+                <img src="./images/stavba-dvorek-2.jpg" alt="Exteriér domu ze stavby" loading="lazy" class="w-full h-full object-cover transition-transform duration-500 group-hover:scale-105">
+            </button>
+            <button class="gallery-item group relative rounded-2xl overflow-hidden aspect-square" data-full="./images/stavba-interier-1.jpg" data-caption="Interiér s dřevěným krovem">
+                <img src="./images/stavba-interier-1.jpg" alt="Interiér s dřevěným krovem" loading="lazy" class="w-full h-full object-cover transition-transform duration-500 group-hover:scale-105">
+            </button>
+            <button class="gallery-item group relative rounded-2xl overflow-hidden aspect-square" data-full="./images/stavba-dron-3.jpg" data-caption="Stavba v kontextu obce — dron">
+                <img src="./images/stavba-dron-3.jpg" alt="Stavba v kontextu obce" loading="lazy" class="w-full h-full object-cover transition-transform duration-500 group-hover:scale-105">
+            </button>
+            <button class="gallery-item group relative rounded-2xl overflow-hidden aspect-square" data-full="./images/stavba-interier-2.jpg" data-caption="Holý interiér jednotky">
+                <img src="./images/stavba-interier-2.jpg" alt="Holý interiér jednotky" loading="lazy" class="w-full h-full object-cover transition-transform duration-500 group-hover:scale-105">
+            </button>
+            <button class="gallery-item group relative rounded-2xl overflow-hidden aspect-square" data-full="./images/stavba-interier-3.jpg" data-caption="Interiér ve výstavbě">
+                <img src="./images/stavba-interier-3.jpg" alt="Interiér ve výstavbě" loading="lazy" class="w-full h-full object-cover transition-transform duration-500 group-hover:scale-105">
+            </button>
+            <button class="gallery-item group relative rounded-2xl overflow-hidden aspect-square" data-full="./images/stavba-dvorek-3.jpg" data-caption="Stavba — dvůr a materiál">
+                <img src="./images/stavba-dvorek-3.jpg" alt="Stavba — dvůr a materiál" loading="lazy" class="w-full h-full object-cover transition-transform duration-500 group-hover:scale-105">
+            </button>
+        </div>
+    </div>
+</section>
+
+<!-- Lightbox -->
+<div id="lightbox" class="fixed inset-0 z-[60] bg-black/90 hidden items-center justify-center p-4">
+    <button id="lightbox-close" class="absolute top-5 right-5 w-11 h-11 bg-white/10 hover:bg-white/20 rounded-full flex items-center justify-center text-white transition-colors">
+        <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"></path></svg>
+    </button>
+    <button id="lightbox-prev" class="absolute left-3 md:left-8 top-1/2 -translate-y-1/2 w-11 h-11 bg-white/10 hover:bg-white/20 rounded-full flex items-center justify-center text-white transition-colors">
+        <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 19l-7-7 7-7"></path></svg>
+    </button>
+    <button id="lightbox-next" class="absolute right-3 md:right-8 top-1/2 -translate-y-1/2 w-11 h-11 bg-white/10 hover:bg-white/20 rounded-full flex items-center justify-center text-white transition-colors">
+        <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"></path></svg>
+    </button>
+    <figure class="max-w-5xl max-h-[88vh] flex flex-col items-center gap-3">
+        <img id="lightbox-img" src="" alt="" class="max-w-full max-h-[80vh] rounded-lg object-contain shadow-2xl">
+        <figcaption id="lightbox-caption" class="text-white/80 text-sm"></figcaption>
+    </figure>
+</div>
+
 <!-- ========== LOKALITA ========== -->
 <section class="py-20 bg-neutralBg">
     <div class="max-w-screen-xl mx-auto px-6 lg:px-12">
@@ -314,86 +450,28 @@
                 </div>
             </div>
 
-            <!-- Map embed placeholder -->
-            <div class="reveal rounded-2xl overflow-hidden shadow-xl shadow-gray-200 h-80">
-                <iframe
-                    src="https://maps.google.com/maps?q=Chot%C4%9B%C5%A1ov,+Plze%C5%88sk%C3%A1&t=&z=14&ie=UTF8&iwloc=&output=embed"
-                    class="w-full h-full border-0"
-                    loading="lazy"
-                    allowfullscreen
-                    title="Mapa lokality Chotěšov">
-                </iframe>
-            </div>
-        </div>
-    </div>
-</section>
-
-<!-- ========== FAQ ========== -->
-<section class="py-20 bg-white">
-    <div class="max-w-3xl mx-auto px-6 lg:px-12">
-        <div class="reveal text-center mb-12">
-            <span class="text-primary text-sm font-semibold uppercase tracking-widest mb-3 block">Časté dotazy</span>
-            <h2 class="text-3xl md:text-4xl font-bold text-textDefault">Máte otázky?</h2>
-        </div>
-
-        <div class="space-y-3 reveal" id="faq-list">
-            <div class="faq-item border border-gray-100 rounded-2xl overflow-hidden">
-                <button class="faq-toggle w-full flex justify-between items-center px-6 py-5 text-left font-semibold text-textDefault hover:bg-gray-50 transition-colors">
-                    <span>Jak probíhá rezervace bytu?</span>
-                    <svg class="faq-icon w-5 h-5 text-primary flex-shrink-0 transition-transform duration-300" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"/></svg>
-                </button>
-                <div class="faq-answer px-6 pb-5 text-textMuted text-sm leading-relaxed hidden">
-                    Po projevení zájmu Vás kontaktuje makléř Jaroslav Straka. Společně dojednáte podmínky, podepíšete rezervační smlouvu a složíte zálohu. Celý proces je bezpečný a transparentní.
+            <!-- Aerial panorama + map -->
+            <div class="reveal space-y-4">
+                <div class="relative rounded-2xl overflow-hidden shadow-xl shadow-gray-200 aspect-video">
+                    <img src="./images/obec-panorama.jpg" alt="Letecký pohled na obec Chotěšov" loading="lazy"
+                         class="w-full h-full object-cover">
+                    <span class="absolute bottom-3 left-3 text-xs text-white/90 bg-black/40 backdrop-blur-sm px-2.5 py-1 rounded-full">Letecký pohled na Chotěšov</span>
                 </div>
-            </div>
-            <div class="faq-item border border-gray-100 rounded-2xl overflow-hidden">
-                <button class="faq-toggle w-full flex justify-between items-center px-6 py-5 text-left font-semibold text-textDefault hover:bg-gray-50 transition-colors">
-                    <span>Jsou možné klientské změny?</span>
-                    <svg class="faq-icon w-5 h-5 text-primary flex-shrink-0 transition-transform duration-300" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"/></svg>
-                </button>
-                <div class="faq-answer px-6 pb-5 text-textMuted text-sm leading-relaxed hidden">
-                    Ano, projekt je ve výstavbě, takže lze domluvit klientské změny — výběr podlah, obkladů nebo příčky. Detaily konzultujte s makléřem.
-                </div>
-            </div>
-            <div class="faq-item border border-gray-100 rounded-2xl overflow-hidden">
-                <button class="faq-toggle w-full flex justify-between items-center px-6 py-5 text-left font-semibold text-textDefault hover:bg-gray-50 transition-colors">
-                    <span>Je parkovací stání v ceně?</span>
-                    <svg class="faq-icon w-5 h-5 text-primary flex-shrink-0 transition-transform duration-300" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"/></svg>
-                </button>
-                <div class="faq-answer px-6 pb-5 text-textMuted text-sm leading-relaxed hidden">
-                    Ano. Každý byt má přiděleno jedno parkovací stání v ceně. Není třeba nic řešit zvlášť.
-                </div>
-            </div>
-            <div class="faq-item border border-gray-100 rounded-2xl overflow-hidden">
-                <button class="faq-toggle w-full flex justify-between items-center px-6 py-5 text-left font-semibold text-textDefault hover:bg-gray-50 transition-colors">
-                    <span>Kdy bude bytový dům dokončen?</span>
-                    <svg class="faq-icon w-5 h-5 text-primary flex-shrink-0 transition-transform duration-300" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"/></svg>
-                </button>
-                <div class="faq-answer px-6 pb-5 text-textMuted text-sm leading-relaxed hidden">
-                    Kolaudace je plánována na <strong>březen 2027</strong>. Předání bytů proběhne bezprostředně po kolaudaci.
-                </div>
-            </div>
-            <div class="faq-item border border-gray-100 rounded-2xl overflow-hidden">
-                <button class="faq-toggle w-full flex justify-between items-center px-6 py-5 text-left font-semibold text-textDefault hover:bg-gray-50 transition-colors">
-                    <span>Mohu si byt koupit na hypotéku?</span>
-                    <svg class="faq-icon w-5 h-5 text-primary flex-shrink-0 transition-transform duration-300" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"/></svg>
-                </button>
-                <div class="faq-answer px-6 pb-5 text-textMuted text-sm leading-relaxed hidden">
-                    Samozřejmě. Financování novostavby hypotékou je standardní. Rádi pomůžeme se zorientovat — zaškrtněte políčko v kontaktním formuláři.
-                </div>
-            </div>
-            <div class="faq-item border border-gray-100 rounded-2xl overflow-hidden">
-                <button class="faq-toggle w-full flex justify-between items-center px-6 py-5 text-left font-semibold text-textDefault hover:bg-gray-50 transition-colors">
-                    <span>Jsou ceny uvedeny s DPH?</span>
-                    <svg class="faq-icon w-5 h-5 text-primary flex-shrink-0 transition-transform duration-300" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"/></svg>
-                </button>
-                <div class="faq-answer px-6 pb-5 text-textMuted text-sm leading-relaxed hidden">
-                    Ano, všechny uvedené ceny jsou včetně DPH. Žádné skryté poplatky.
+                <div class="rounded-2xl overflow-hidden shadow-xl shadow-gray-200 h-64">
+                    <iframe
+                        src="https://maps.google.com/maps?q=Chot%C4%9B%C5%A1ov,+Plze%C5%88sk%C3%A1&t=&z=14&ie=UTF8&iwloc=&output=embed"
+                        class="w-full h-full border-0"
+                        loading="lazy"
+                        allowfullscreen
+                        title="Mapa lokality Chotěšov">
+                    </iframe>
                 </div>
             </div>
         </div>
     </div>
 </section>
+
+
 
 <!-- Floating Mobile CTA -->
 <div id="floating-cta" class="fixed bottom-6 left-1/2 -translate-x-1/2 z-50 opacity-0 pointer-events-none transition-all duration-500">
@@ -514,7 +592,7 @@
                         <label class="flex items-start gap-3 cursor-pointer group">
                             <input type="checkbox" id="mortgageCheck" class="mt-1 w-4 h-4 accent-primary">
                             <span class="text-sm text-textMuted group-hover:text-textDefault transition-colors">
-                                🏦 Plánám řešit financování hypotékou — rád bych informace o možnostech
+                                🏦 Plánuji řešit financování hypotékou — rád bych informace o možnostech
                             </span>
                         </label>
 
@@ -532,7 +610,73 @@
     </div>
 </section>
 
-<!-- ========== FOOTER ========== -->
+<!-- ========== FAQ ========== -->
+<section class="py-16 bg-neutralBg">
+    <div class="max-w-screen-xl mx-auto px-6 lg:px-12">
+        <div class="reveal text-center mb-10">
+            <span class="text-primary text-sm font-semibold uppercase tracking-widest mb-3 block">Časté dotazy</span>
+            <h2 class="text-2xl md:text-3xl font-bold text-textDefault">Máte otázky?</h2>
+        </div>
+        <div class="grid grid-cols-1 md:grid-cols-2 gap-3 reveal" id="faq-list">
+            <div class="faq-item border border-gray-200 rounded-2xl overflow-hidden bg-white">
+                <button class="faq-toggle w-full flex justify-between items-center px-5 py-4 text-left font-semibold text-textDefault hover:bg-blue-50 transition-colors text-sm">
+                    <span>Jak probíhá rezervace bytu?</span>
+                    <svg class="faq-icon w-4 h-4 text-primary flex-shrink-0 transition-transform duration-300" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"/></svg>
+                </button>
+                <div class="faq-answer px-5 pb-4 text-textMuted text-sm leading-relaxed hidden">
+                    Po projevení zájmu Vás kontaktuje makléř Jaroslav Straka. Společně dojednáte podmínky, podepíšete rezervační smlouvu a složíte zálohu.
+                </div>
+            </div>
+            <div class="faq-item border border-gray-200 rounded-2xl overflow-hidden bg-white">
+                <button class="faq-toggle w-full flex justify-between items-center px-5 py-4 text-left font-semibold text-textDefault hover:bg-blue-50 transition-colors text-sm">
+                    <span>Jsou možné klientské změny?</span>
+                    <svg class="faq-icon w-4 h-4 text-primary flex-shrink-0 transition-transform duration-300" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"/></svg>
+                </button>
+                <div class="faq-answer px-5 pb-4 text-textMuted text-sm leading-relaxed hidden">
+                    Ano, projekt je ve výstavbě. Možný výběr podlah, obkladů nebo rozmístění příček. Detaily konzultujte s makléřem.
+                </div>
+            </div>
+            <div class="faq-item border border-gray-200 rounded-2xl overflow-hidden bg-white">
+                <button class="faq-toggle w-full flex justify-between items-center px-5 py-4 text-left font-semibold text-textDefault hover:bg-blue-50 transition-colors text-sm">
+                    <span>Je parkovací stání v ceně?</span>
+                    <svg class="faq-icon w-4 h-4 text-primary flex-shrink-0 transition-transform duration-300" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"/></svg>
+                </button>
+                <div class="faq-answer px-5 pb-4 text-textMuted text-sm leading-relaxed hidden">
+                    Ano. Každý byt má přiděleno jedno parkovací stání v ceně. Není třeba nic řešit zvlášť.
+                </div>
+            </div>
+            <div class="faq-item border border-gray-200 rounded-2xl overflow-hidden bg-white">
+                <button class="faq-toggle w-full flex justify-between items-center px-5 py-4 text-left font-semibold text-textDefault hover:bg-blue-50 transition-colors text-sm">
+                    <span>Kdy bude bytový dům dokončen?</span>
+                    <svg class="faq-icon w-4 h-4 text-primary flex-shrink-0 transition-transform duration-300" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"/></svg>
+                </button>
+                <div class="faq-answer px-5 pb-4 text-textMuted text-sm leading-relaxed hidden">
+                    Kolaudace je plánována na <strong>březen 2027</strong>. Předání bytů proběhne bezprostředně po kolaudaci.
+                </div>
+            </div>
+            <div class="faq-item border border-gray-200 rounded-2xl overflow-hidden bg-white">
+                <button class="faq-toggle w-full flex justify-between items-center px-5 py-4 text-left font-semibold text-textDefault hover:bg-blue-50 transition-colors text-sm">
+                    <span>Mohu si byt koupit na hypotéku?</span>
+                    <svg class="faq-icon w-4 h-4 text-primary flex-shrink-0 transition-transform duration-300" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"/></svg>
+                </button>
+                <div class="faq-answer px-5 pb-4 text-textMuted text-sm leading-relaxed hidden">
+                    Samozřejmě. Financování novostavby hypotékou je standardní. Zaškrtněte políčko „řeším hypotéku“ v kontaktním formuláři.
+                </div>
+            </div>
+            <div class="faq-item border border-gray-200 rounded-2xl overflow-hidden bg-white">
+                <button class="faq-toggle w-full flex justify-between items-center px-5 py-4 text-left font-semibold text-textDefault hover:bg-blue-50 transition-colors text-sm">
+                    <span>Jsou ceny uvedené s DPH?</span>
+                    <svg class="faq-icon w-4 h-4 text-primary flex-shrink-0 transition-transform duration-300" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"/></svg>
+                </button>
+                <div class="faq-answer px-5 pb-4 text-textMuted text-sm leading-relaxed hidden">
+                    Ano, všechny uvedené ceny jsou včetně DPH. Žádné skryté poplatky.
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+
 <footer class="bg-gray-900 text-gray-400 py-12">
     <div class="max-w-screen-xl mx-auto px-6 lg:px-12">
         <div class="flex flex-col md:flex-row justify-between items-start md:items-center gap-8">

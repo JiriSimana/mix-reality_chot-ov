@@ -1,3 +1,9 @@
 node_modules/
 .DS_Store
 *.log
+.claude/
+
+# Originály fotek z výstavby (~240 MB) — na web stačí optimalizovaná složka images/
+fotky - výstavba/
+_verify*.html
+_spytest*.html

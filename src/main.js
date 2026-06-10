@@ -1,15 +1,14 @@
 // Disposition sort order: 1+kk < 2+kk < 2+1 < 3+kk < 3+1
 const DISPOZICE_ORDER = { "1+kk": 1, "2+kk": 2, "2+1": 3, "3+kk": 4, "3+1": 5 };
 
-// Real property data from mixreality.eu listings in Chotěšov
-// Photos sourced directly from the project's listing gallery
+// Ilustrační vizualizace projektu (lokální, optimalizované)
 const PROJECT_IMAGES = {
-    exterior1: "https://www.mixreality.eu/data/filecache/64/tn_zoom_filename_77533.jpg",
-    exterior2: "https://www.mixreality.eu/data/filecache/8d/tn_zoom_filename_77532.jpg",
-    interior1: "https://www.mixreality.eu/data/filecache/a0/tn_zoom_filename_77671.jpg",
-    plan1:     "https://www.mixreality.eu/data/filecache/09/tn_zoom_filename_77598.jpg",
-    plan2:     "https://www.mixreality.eu/data/filecache/b9/tn_zoom_filename_77594.jpg",
-    plan3:     "https://www.mixreality.eu/data/filecache/00/tn_zoom_filename_77595.jpg",
+    exterior1: "./images/viz-letecka-1.jpg",
+    exterior2: "./images/viz-dvorek-1.jpg",
+    interior1: "./images/viz-interier-1.jpg",
+    plan1:     "./images/viz-interier-2.jpg",
+    plan2:     "./images/viz-interier-3.jpg",
+    plan3:     "./images/viz-interier-4.jpg",
 };
 
 const properties = [
@@ -257,34 +256,58 @@ function initScrollProgress() {
 
 // ── Section Dots ─────────────────────────────────────────────────
 function initSectionDots() {
-    const SECTIONS = ['hero', 'projekt', 'byty', 'harmonogram', 'contact'];
+    const SECTIONS = ['hero', 'projekt', 'byty', 'realita', 'galerie', 'harmonogram', 'contact'];
     const dots = document.querySelectorAll('#section-dots button');
+    const navLinks = document.querySelectorAll('.nav-links a');
+
+    const elFor = id => id === 'hero' ? document.querySelector('header') : document.getElementById(id);
 
     // Click → scroll to section
     dots.forEach(btn => {
         btn.addEventListener('click', () => {
-            const sec = btn.dataset.section;
-            const el = sec === 'hero'
-                ? document.querySelector('header')
-                : document.getElementById(sec);
+            const el = elFor(btn.dataset.section);
             if (el) el.scrollIntoView({ behavior: 'smooth' });
         });
     });
 
-    // Update active dot on scroll
-    const sectionEls = SECTIONS.map(id =>
-        id === 'hero' ? document.querySelector('header') : document.getElementById(id)
-    );
-    const updateDots = () => {
-        const mid = window.scrollY + window.innerHeight * 0.4;
-        let current = 0;
-        sectionEls.forEach((el, i) => {
-            if (el && el.offsetTop <= mid) current = i;
+    // Build ordered list of {id, el}
+    const sectionEls = SECTIONS.map(id => ({ id, el: elFor(id) })).filter(s => s.el);
+
+    let activeId = null;
+    const apply = id => {
+        if (id === activeId) return;          // skip redundant DOM writes
+        activeId = id;
+        dots.forEach(btn => btn.classList.toggle('active', btn.dataset.section === id));
+        navLinks.forEach(a => {
+            const href = a.getAttribute('href') || '';
+            a.classList.toggle('active', href === '#' + id);
         });
-        dots.forEach((btn, i) => btn.classList.toggle('active', i === current));
     };
-    window.addEventListener('scroll', updateDots, { passive: true });
-    updateDots();
+
+    const compute = () => {
+        // Reference line at 38% of the viewport — the section crossing it is "current"
+        const line = window.scrollY + window.innerHeight * 0.38;
+        let current = sectionEls[0].id;
+        for (const s of sectionEls) {
+            if (s.el.offsetTop <= line) current = s.id;
+        }
+        // Bottom of page → force-activate the last section (contact)
+        if (window.innerHeight + window.scrollY >= document.documentElement.scrollHeight - 4) {
+            current = sectionEls[sectionEls.length - 1].id;
+        }
+        apply(current);
+    };
+
+    // rAF-throttled scroll handler
+    let ticking = false;
+    const onScroll = () => {
+        if (ticking) return;
+        ticking = true;
+        requestAnimationFrame(() => { compute(); ticking = false; });
+    };
+    window.addEventListener('scroll', onScroll, { passive: true });
+    window.addEventListener('resize', onScroll, { passive: true });
+    compute();
 }
 
 // ── Navbar Scroll Effect ─────────────────────────────────────────
@@ -323,8 +346,84 @@ function initParallax() {
 
 // ── Fix "Načtečí" dot label ───────────────────────────────────────
 function fixDotLabels() {
-    const hero = document.querySelector('#section-dots button[data-label="Načtečí"]');
+    const hero = document.querySelector('#section-dots button[data-label="Načtení"]');
     if (hero) hero.setAttribute('data-label', 'Nahoru');
+}
+
+// ── Before / After Slider (Vizualizace × Realita) ─────────────────
+function initBeforeAfter() {
+    document.querySelectorAll('.ba-slider').forEach(slider => {
+        const wrap = slider.querySelector('.ba-before-wrap');
+        const beforeImg = slider.querySelector('.ba-before');
+        const handle = slider.querySelector('.ba-handle');
+        let dragging = false;
+
+        const sizeBefore = () => { beforeImg.style.width = slider.clientWidth + 'px'; };
+        const setPos = pct => {
+            pct = Math.max(0, Math.min(100, pct));
+            wrap.style.width = pct + '%';
+            handle.style.left = pct + '%';
+        };
+        const pctFromEvent = e => {
+            const rect = slider.getBoundingClientRect();
+            const x = (e.touches ? e.touches[0].clientX : e.clientX) - rect.left;
+            return (x / rect.width) * 100;
+        };
+
+        sizeBefore();
+        setPos(50);
+        window.addEventListener('resize', sizeBefore);
+
+        const start = e => { dragging = true; setPos(pctFromEvent(e)); };
+        const move = e => { if (dragging) { setPos(pctFromEvent(e)); e.preventDefault(); } };
+        const end = () => { dragging = false; };
+
+        slider.addEventListener('mousedown', start);
+        window.addEventListener('mousemove', move);
+        window.addEventListener('mouseup', end);
+        slider.addEventListener('touchstart', start, { passive: true });
+        window.addEventListener('touchmove', move, { passive: false });
+        window.addEventListener('touchend', end);
+    });
+}
+
+// ── Gallery Lightbox ──────────────────────────────────────────────
+function initGallery() {
+    const items = [...document.querySelectorAll('.gallery-item')];
+    const lb = document.getElementById('lightbox');
+    if (!items.length || !lb) return;
+    const img = document.getElementById('lightbox-img');
+    const cap = document.getElementById('lightbox-caption');
+    let idx = 0;
+
+    const show = i => {
+        idx = (i + items.length) % items.length;
+        img.src = items[idx].dataset.full;
+        cap.textContent = items[idx].dataset.caption || '';
+    };
+    const open = i => {
+        show(i);
+        lb.classList.remove('hidden');
+        lb.classList.add('flex');
+        document.body.style.overflow = 'hidden';
+    };
+    const close = () => {
+        lb.classList.add('hidden');
+        lb.classList.remove('flex');
+        document.body.style.overflow = '';
+    };
+
+    items.forEach((it, i) => it.addEventListener('click', () => open(i)));
+    document.getElementById('lightbox-close').addEventListener('click', close);
+    document.getElementById('lightbox-next').addEventListener('click', e => { e.stopPropagation(); show(idx + 1); });
+    document.getElementById('lightbox-prev').addEventListener('click', e => { e.stopPropagation(); show(idx - 1); });
+    lb.addEventListener('click', e => { if (e.target === lb) close(); });
+    document.addEventListener('keydown', e => {
+        if (lb.classList.contains('hidden')) return;
+        if (e.key === 'Escape') close();
+        if (e.key === 'ArrowRight') show(idx + 1);
+        if (e.key === 'ArrowLeft') show(idx - 1);
+    });
 }
 
 
@@ -428,6 +527,8 @@ document.addEventListener('DOMContentLoaded', () => {
     initParallax();
     initFAQ();
     initFloatingCTA();
+    initBeforeAfter();
+    initGallery();
     fixDotLabels();
     document.addEventListener('keydown', e => { if (e.key === 'Escape') closeModal(); });
 });

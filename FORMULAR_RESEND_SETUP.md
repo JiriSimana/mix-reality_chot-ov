@@ -56,6 +56,12 @@ Vercel → **Project → Settings → Environment Variables** (Production i Prev
 | `BROKER_NAME` | `Jaroslav Straka` |
 | `BROKER_PHONE` | `+420 731 670 412` |
 | `BROKER_EMAIL` | `jaroslav.straka@mixreality.eu` |
+| `AUTOREPLY_IMAGE` | `https://mix-reality-chot-ov.vercel.app/images/viz-letecka-1.jpg` |
+| `SITE_URL` | `https://mix-reality-chot-ov.vercel.app` |
+| `AUTOREPLY_CTA` | `Prohlédnout byty` |
+| `BRAND_COLOR` | `#1d4ed8` (volitelné, default modrá) |
+
+> `AUTOREPLY_IMAGE` = obrázek v hlavičce e-mailu, `SITE_URL` = cíl tlačítka. Bez nich e-mail funguje dál, jen bez obrázku/tlačítka.
 
 > Když `AUTOREPLY` nenastavíš (nebo dáš jinou hodnotu než on/true/yes/ano/1), pošle se jen notifikace makléři. Auto-odpověď chodí návštěvníkovi z `CONTACT_FROM`, ale `reply-to` míří na makléře.
 

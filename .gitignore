@@ -7,3 +7,6 @@ node_modules/
 fotky - výstavba/
 _verify*.html
 _spytest*.html
+
+# Marketingové grafiky (nepatří do webového deploye)
+social/
